@@ -44,4 +44,6 @@ touch site.yml
 touch webservers.yml
 touch dbservers.yml
 mkdir -p roles/common
-mkdir -p roles/monitoring  
+mkdir -p roles/monitoring
+
+Author: Eric Lacroix
