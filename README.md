@@ -44,6 +44,7 @@ touch site.yml
 touch webservers.yml
 touch dbservers.yml
 mkdir -p roles/common
+<<<<<<< HEAD
 mkdir -p roles/monitoring  
 
 Session 3 - Project restructuring & Code Migration
@@ -68,3 +69,8 @@ Starting Point
 - all servers have had the ansiblead (password ******) installed, ssh key deployed and added to wheel just like we typically get from the O/S teams
 
 1) Move existing inventories and variables to new structure
+=======
+mkdir -p roles/monitoring
+
+Author: Eric Lacroix
+>>>>>>> 09909563f3a7893d2f161249b754be8bce1f4a54
