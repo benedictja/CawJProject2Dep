@@ -13,6 +13,6 @@
       size: 10m
   # check and update all patches
   - name: Upgrade all packages
-      ansible.builtin.dnf:
-        name: "*"
-        state: latest
+    ansible.builtin.dnf:
+      name: "*"
+      state: latest
