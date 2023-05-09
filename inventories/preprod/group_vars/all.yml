@@ -1,0 +1,14 @@
+#
+# This file contains variables that apply to ALL groups
+#
+
+#
+# host_ips contains the IP Address and host/alias mappings for this environment
+#
+host_ips:
+  - 192.168.2.164	ansible-1 demo-paz-apache-1
+  - 192.168.2.162	ansible-2 demo-paz-apache-2
+  - 192.168.2.168	ansible-3 demo-apps-tomcat-1
+  - 192.168.2.169	ansible-4 demo-apps-tomcat-2
+  - 192.168.2.170	ansible-5 demo-apps-lb
+  - 192.168.2.171	ansible-6 demo-paz-lb

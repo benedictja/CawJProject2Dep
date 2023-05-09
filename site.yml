@@ -1,0 +1,13 @@
+---
+# This playbook deploys the whole application stack in this site.
+# not true... yet, we're just testing connectivity
+- name: simple play to test connectivity
+  hosts: webservers appservers loadbalancers
+  become: yes
+  tasks:
+  # simple play to verify connectivity and pathing is correct
+  - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+    ansible.builtin.find:
+      paths: /var/log
+      patterns: '*.old,*.log.gz'
+      size: 10m
