@@ -5,14 +5,8 @@
   hosts: webservers appservers loadbalancers
   become: yes
   tasks:
-  # simple play to verify connectivity and pathing is correct
-  - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
-    ansible.builtin.find:
-      paths: /var/log
-      patterns: '*.old,*.log.gz'
-      size: 10m
   # check and update all patches
-  #- name: Upgrade all packages
-  #  ansible.builtin.dnf:
-  #    name: "*"
-  #    state: latest
+  - name: Upgrade all packages
+    ansible.builtin.dnf:
+      name: "*"
+      state: latest
