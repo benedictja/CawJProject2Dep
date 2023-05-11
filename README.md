@@ -44,7 +44,6 @@ touch site.yml
 touch webservers.yml
 touch dbservers.yml
 mkdir -p roles/common
-<<<<<<< HEAD
 mkdir -p roles/monitoring  
 
 Session 3 - Project restructuring & Code Migration
@@ -68,9 +67,39 @@ Decisions
 Starting Point
 - all servers have had the ansiblead (password ******) installed, ssh key deployed and added to wheel just like we typically get from the O/S teams
 
-1) Move existing inventories and variables to new structure
-=======
-mkdir -p roles/monitoring
+1) Move existing inventories and variables to new structure - done
+2) Write a simple play to verify it works - done
 
-Author: Eric Lacroix
->>>>>>> 09909563f3a7893d2f161249b754be8bce1f4a54
+Session 3b (recap)
+
+Objective
+1) Move existing inventories and variables into new structure
+2) Write a simple play to verify it works
+3) Test GIT
+4) Start migrating complex plays
+
+Decisions
+- Pre-Prod First
+   My existing ESX hosts will become my pre-prod environment.
+   Once that is done and working, we will create a "prod" env elsewhere, some options
+      a) Cloud
+      b) OpenShift
+      c) Another set of esx hosts
+- Play Strucuture - keep zoned concept
+   Build one playbook for each zone deployment and hook them in to the main playbook via includes
+
+Starting Point
+- all servers have had the ansiblead (password ******) installed, ssh key deployed and added to wheel just like we typically get from the O/S teams
+
+1) Move existing inventories and variables into new structure
+- done again
+2) Write a simple play to verify it works
+3) Test GIT
+4) Start migrating complex plays
+
+benedictja - "developer" - vs code
+check-in to GIT
+ansiblead - "operations" - 
+check-out from GIT 
+execute it against the environment
+

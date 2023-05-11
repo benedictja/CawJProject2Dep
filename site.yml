@@ -12,7 +12,7 @@
       patterns: '*.old,*.log.gz'
       size: 10m
   # check and update all patches
-  - name: Upgrade all packages
-    ansible.builtin.dnf:
-      name: "*"
-      state: latest
+  #- name: Upgrade all packages
+  #  ansible.builtin.dnf:
+  #    name: "*"
+  #    state: latest
