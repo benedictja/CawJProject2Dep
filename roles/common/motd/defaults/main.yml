@@ -1,0 +1,4 @@
+#file: main.yml
+---
+# defaults file for motd
+system_manager: benedictja@gmail.com

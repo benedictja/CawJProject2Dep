@@ -1,0 +1,7 @@
+---
+- name:  deploy web tier
+  hosts: webservers 
+  become: yes
+  roles:
+  - role: common/motd
+    system_manager: benedictja@gmail.com
