@@ -1,12 +1,6 @@
 ---
+# file: site.yml
 # This playbook deploys the whole application stack in this site.
-# not true... yet, we're just testing connectivity
-- name: simple play to test connectivity
-  hosts: webservers appservers loadbalancers
-  become: yes
-  tasks:
-  # check and update all patches
-  - name: Upgrade all packages
-    ansible.builtin.dnf:
-      name: "*"
-      state: latest
+- ansible.builtin.import_playbook: webservers.yml
+- ansible.builtin.import_playbook: appservers.yml 
+    

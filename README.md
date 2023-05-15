@@ -93,13 +93,15 @@ Starting Point
 
 1) Move existing inventories and variables into new structure
 - done again
+
 2) Write a simple play to verify it works
+- 
 3) Test GIT
 4) Start migrating complex plays
 
 benedictja - "developer" - vs code
 check-in to GIT
-ansiblead - "operations" - 
+ansiblead - "operations" -
 check-out from GIT 
 execute it against the environment
 
