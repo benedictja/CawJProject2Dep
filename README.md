@@ -105,3 +105,33 @@ ansiblead - "operations" -
 check-out from GIT 
 execute it against the environment
 
+Session 4 - The "migration"
+
+Description
+
+Now that we've got the new structure setup and working with git, its time to start migrating the deployment plays.
+
+Decisions
+
+Based on the previous decisions, I will be breaking my plays by "tier" and creating roles for each individual task.
+
+Objectives
+1) Create main (site.yml) to launch total update
+2) It will be mostly a skeleton, importing each tier
+3) Write "roles" for each task
+4) I will break rols down in to common and tier specific
+
+- I have created a motd role as a sample/test to verify roles
+- next step will be to create the patch (dnf) role and test it
+
+Urls that I used for reference
+
+https://docs.ansible.com/ansible/2.8/user_guide/playbooks_best_practices.html - this is an older link, the latest is
+https://docs.ansible.com/ansible/2.9/user_guide/playbooks_best_practices.html
+
+https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.html - reference for roles
+
+
+Meeting Notes
+
+

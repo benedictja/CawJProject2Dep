@@ -1,6 +1,17 @@
 ---
 # file: site.yml
-# This playbook deploys the whole application stack in this site.
+# description: 
+# The main deployment script
+# call this script to deploy or update the application
+
+#
+# deploy/update web tier
+#
 - ansible.builtin.import_playbook: webservers.yml
-#- ansible.builtin.import_playbook: appservers.yml 
+
+#
+# deploy/update application tier
+#
+- ansible.builtin.import_playbook: appservers.yml 
+
     

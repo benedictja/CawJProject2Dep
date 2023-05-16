@@ -1,1 +1,7 @@
 ---
+- name:  Deploy/Update Application Tier
+  hosts: appservers 
+  become: yes
+  roles:
+  - role: common/motd
+    system_manager: benedictja@gmail.com
