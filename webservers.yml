@@ -5,3 +5,4 @@
   roles:
   - role: common/motd
     system_manager: james.benedict@ssc-spc.gc.ca
+  - role: common/os-patching

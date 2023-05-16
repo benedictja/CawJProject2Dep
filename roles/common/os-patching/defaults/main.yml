@@ -1,0 +1,5 @@
+#file: main.yml
+---
+# defaults go here
+# e.g. 
+# system_manager: benedictja@gmail.com

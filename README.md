@@ -116,9 +116,9 @@ Decisions
 Based on the previous decisions, I will be breaking my plays by "tier" and creating roles for each individual task.
 
 Objectives
-1) Create main (site.yml) to launch total update
-2) It will be mostly a skeleton, importing each tier
-3) Write "roles" for each task
+1) Create main (site.yml) to launch total update - done
+2) It will be mostly a skeleton, importing each tier -done
+3) Write "roles" for each task 
 4) I will break rols down in to common and tier specific
 
 - I have created a motd role as a sample/test to verify roles
@@ -134,4 +134,6 @@ https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.htm
 
 Meeting Notes
 
+created and deployed motd role
+now working on update role
 

@@ -5,3 +5,4 @@
   roles:
   - role: common/motd
     system_manager: benedictja@gmail.com
+  - role: common/os-patching

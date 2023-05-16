@@ -1,0 +1,14 @@
+---
+# file: common/os-patching/tasks/main.yml
+#
+# Description
+#
+# Call the package update tool (dnf for RHEL/CentOS) to bring the installed rpms
+# to the latest revision
+#
+# This is where the role's tasks go
+#
+- name: Upgrade all packages
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
