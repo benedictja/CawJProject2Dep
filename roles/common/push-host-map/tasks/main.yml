@@ -1,4 +1,11 @@
 ---
-# file: tasks/main.yml
+# file: common/push-host-map/tasks/main.yml
 #
-# This is where the role's tasks go
+# Main task file to push host map
+#
+
+- name: Add a line to a file
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    line:  "{{ item }}"
+    with_items: "{{ host_ips }}"
