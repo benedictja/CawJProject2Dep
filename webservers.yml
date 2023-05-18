@@ -23,3 +23,7 @@
     # since we don't have dns, we will need to manually create /etc/hosts
     # we will be using a variable to define the hosts
   - role: common/push-host-map
+
+    # install and configure apache httpd
+    # note: once apache is installed, it will be kept up-to-date by the os-patching role
+  #- role: paz/setup-proxy
