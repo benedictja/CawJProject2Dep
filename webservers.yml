@@ -1,8 +1,19 @@
+# file: webservers.yml
+# 
+# This playbook is responsible for the initial deployment of the web tier as well as applying any patches and changes
+#
 ---
 - name:  Deploy/Update Web Tier
   hosts: webservers 
   become: yes
   roles:
-  - role: common/motd
+
+    # push any updates to the message of the day
+    # parameters:
+    #   system_manager - contact email listed in the motd
+  - role: common/motd 
     system_manager: james.benedict@ssc-spc.gc.ca
+    
+    # check for any package updates and launch patching tool
+    # note: this application will always upgrade to the LATEST version of all packages
   - role: common/os-patching
