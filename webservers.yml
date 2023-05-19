@@ -1,8 +1,9 @@
+---
 # file: webservers.yml
 # 
 # This playbook is responsible for the initial deployment of the web tier as well as applying any patches and changes
 #
----
+
 - name:  Deploy/Update Web Tier
   hosts: webservers 
   become: yes
@@ -26,4 +27,9 @@
 
     # install and configure apache httpd
     # note: once apache is installed, it will be kept up-to-date by the os-patching role
-  #- role: paz/setup-proxy
+  - role: webservers/setup-proxy
+
+    # deploy/push static content: DISABLED
+    # in the original project, we had a play to push static content that we were working on
+    # that will be ported later
+  #- role: webservers/static-content

@@ -1,0 +1,12 @@
+# file: infrastructure.yml
+# 
+# This playbook defines the IaC (Infrastructure as Code) component.  I kept this separate because it is NOT middleware.
+# 
+# Currently, we only setup load balancers
+#
+---
+- name:  Deploy/Update Infrastructure (IaC)
+  hosts: loadbalancers 
+  become: yes
+  roles:
+  #- role: common/install-lb

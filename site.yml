@@ -5,6 +5,11 @@
 # call this script to deploy or update the application
 
 #
+# deploy/update Infrastrcuture (IaC)
+#
+- ansible.builtin.import_playbook: infrastructure.yml
+
+#
 # deploy/update web tier
 #
 - ansible.builtin.import_playbook: webservers.yml

@@ -1,0 +1,140 @@
+---
+# file: setup-proxy/tasks//main.yml
+#
+# This role will install the apache and configure it as a reverse proxy
+#
+# For now, we will pull the config files from the role (paz/setup-proxy/files) but, eventually 
+# we will move it to the env-specific so that we can have separate configs.
+#
+
+#
+# Install httpd
+#
+# Remember: ansible is idempotent (declarative) so we identify the STATE we want the
+# system to be in. In this case, we want the latest version of apache to be installed
+#
+- name: httpd installed
+  ansible.builtin.dnf:
+    name: httpd
+    state: latest
+
+#
+# we also expect mod_ssl to be installed and up-to-date
+#
+- name: mod_ssl installed
+  ansible.builtin.dnf:
+    name: mod_ssl
+    state: latest
+
+#
+# 
+# Create and index.html default page 
+#
+- name: copying index.html
+  ansible.builtin.copy:
+    src: files/index.html
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: '0644'
+#
+# Push supplied version of httpd.conf
+#
+- name: push httpd.conf
+  ansible.builtin.copy:
+    src: files/httpd.conf
+    dest: /etc/httpd/conf/httpd.conf
+    owner: root
+    group: root
+    mode: '0644'
+#
+# push supplied ssl.conf
+#
+- name: update apache ssl.conf
+  ansible.builtin.copy:
+    src: files/ssl.conf
+    dest: /etc/httpd/conf.d/ssl.conf
+    owner: root
+    group: root
+    mode: '0644'
+# 
+# Now we push the https certificates
+#
+- name: copy domain.key to pki directory
+  ansible.builtin.copy:
+    src: files/domain.key
+    dest: /etc/pki/tls/private/domain.key
+    owner: root
+    group: root
+    mode: '0644'
+- name: copy domain.crt to pki directory
+  ansible.builtin.copy:
+    src: files/domain.crt
+    dest: /etc/pki/tls/certs/domain.crt
+    owner: root
+    group: root
+    mode: '0644'
+#
+# TODO: check to make sure tomcat is installed before adding proxy?
+#
+
+#
+# push proxy.conf
+#
+- name: setup proxy.conf
+  ansible.builtin.copy:
+    src: files/proxy.conf
+    dest: /etc/httpd/conf.d/proxy.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+#
+# Update selinux so that httpd can forward requests
+#
+- name: Set httpd_can_network_connect flag on and keep it persistent across reboots
+  ansible.posix.seboolean:
+    name: httpd_can_network_connect
+    state: true
+    persistent: true
+
+#
+#  Enable the httpd service
+#
+- name: httpd service enabled
+  ansible.builtin.service:
+    name: httpd
+    enabled: true
+    state: started
+
+# 
+# configure the firewall for http/https traffic
+#
+- name: open firewall for http (80)
+  ansible.posix.firewalld:
+    service: http
+    state: enabled
+    immediate: true
+    permanent: true
+- name: open firewall for https (443)
+  ansible.posix.firewalld:
+    service: https
+    state: enabled
+    immediate: true
+    permanent: true
+#
+# finally, we make sure apache has been restarted so that all changes get applied
+#
+# TODO: check to see if service exists before restarting
+#
+- name: Get the list of services
+  ansible.builtin.service_facts:
+
+- name: restart service
+  service:
+    name: httpd
+    state: restarted
+    enabled: yes
+  when: "'httpd.service' in services"
+
+  

@@ -1,0 +1,4 @@
+---
+# file: infrastructure/loadbalancers/tasks/main.yml
+#
+# This is where the role's tasks go

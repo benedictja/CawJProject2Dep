@@ -134,9 +134,3 @@ https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.htm
 
 Meeting Notes
 
-created and deployed motd role
-now working on update role
-
-testing out on my pc
-
-testing from ssc laptop
