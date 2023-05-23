@@ -24,3 +24,6 @@
     # since we don't have dns, we will need to manually create /etc/hosts
     # we will be using a variable to define the hosts
   - role: common/push-host-map
+
+    # call the role to install and configure the appserver (tomcat)
+  - role: appservers/setup-appserver-tomcat
