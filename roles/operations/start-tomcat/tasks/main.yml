@@ -1,0 +1,9 @@
+---
+# file: operations/start-tomcat/tasks/main.yml
+#
+# This will satrt a tomcat server
+#
+- name: start tomcat server
+  ansible.builtin.service:
+    name: tomcat
+    state: started
