@@ -12,7 +12,7 @@
     state: absent
 - name: copy and replace war
   ansible.builtin.copy:
-    src: /home/benedictja/Ansible/src/java-example-helloworld-war/dist/helloworld.war
+    src: /Projects/Staging/CawJProject2Dep/WAR/helloworld.war
     dest: /usr/share/tomcat/webapps/helloworld.war
     owner: tomcat
     group: tomcat 
