@@ -143,3 +143,12 @@ Next Session
 
 Meeting Notes
 
+Session 5 - Lets get Operational (2023-05-23)
+
+Description
+
+Decisions
+
+Objectives
+
+Meeting Notes
