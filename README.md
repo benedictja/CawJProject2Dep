@@ -131,6 +131,15 @@ https://docs.ansible.com/ansible/2.9/user_guide/playbooks_best_practices.html
 
 https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.html - reference for roles
 
+Next Session
+- operational roles
+1) LACMS check 
+   . check admin rights or perms
+   . do it right now
+1.1) cleanup
+2) Start/Stop/Restart individual/tier/system
+3) Push password changes and certificates
+
 
 Meeting Notes
 
