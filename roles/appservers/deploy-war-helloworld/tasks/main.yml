@@ -1,0 +1,23 @@
+---
+# file: tasks/main.yml
+#
+# This is where the role's tasks go
+- name: stop tomcat
+  ansible.builtin.service:
+    name: tomcat
+    state: stopped
+- name: delete directory
+  ansible.builtin.file:
+    path: /usr/share/tomcat/webapps/helloworld
+    state: absent
+- name: copy and replace war
+  ansible.builtin.copy:
+    src: /home/benedictja/Ansible/src/java-example-helloworld-war/dist/helloworld.war
+    dest: /usr/share/tomcat/webapps/helloworld.war
+    owner: tomcat
+    group: tomcat 
+    mode: u=rwx,g=r,o=r
+- name: start tomcat back up
+  ansible.builtin.service:
+    name: tomcat
+    state: started
