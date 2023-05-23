@@ -1,0 +1,16 @@
+---
+# file: stop-tomcat.yml
+# 
+# This playbook just stops tomcat, that's it!
+#
+
+- name:  Stop tomcat
+  hosts: appservers 
+  become: yes
+  roles:
+
+    # Call the role to stop tomcat
+    # no parameters
+    
+  - role: operations/stop-tomcat 
+   
