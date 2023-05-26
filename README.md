@@ -147,8 +147,19 @@ Session 5 - Lets get Operational (2023-05-23)
 
 Description
 
+Work on starting/stoping/restarting components, and entire system
+
 Decisions
+
+- operations directory to keep separate from depoyment/config tasks (might move it to own project)
 
 Objectives
 
+- start/stop apache
+
 Meeting Notes
+
+
+Session 5, Friday Afternoon
+
+Recap
