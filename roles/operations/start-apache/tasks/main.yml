@@ -1,0 +1,9 @@
+---
+# file: operations/start-apache/tasks/main.yml
+#
+# This will satrt a apache server
+#
+- name: start apache server
+  ansible.builtin.service:
+    name: httpd
+    state: started

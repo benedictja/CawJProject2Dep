@@ -28,4 +28,5 @@
     # call the role to install and configure the appserver (tomcat)
   - role: appservers/setup-appserver-tomcat
 
+    # call the role to deploy the WAR in tomcat
   - {role: 'appservers/deploy-war-helloworld', tags: 'deploy-war'}

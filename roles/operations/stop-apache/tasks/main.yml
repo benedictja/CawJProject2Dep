@@ -1,0 +1,9 @@
+---
+# file: operations/stop-apache/tasks/main.yml
+#
+# This will stop a apache server
+#
+- name: stop apache server
+  ansible.builtin.service:
+    name: httpd
+    state: stopped

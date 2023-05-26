@@ -1,0 +1,15 @@
+---
+# file: start-apache.yml
+#
+# description: this playbook starts the apache servers at the web tier
+#
+
+- name: start apache
+  hosts: webservers 
+  become: yes
+  roles:
+
+    # Call the role to start apache httpd
+    # no parameters
+    
+  - role: operations/start-apache 

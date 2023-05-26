@@ -1,0 +1,16 @@
+---
+# file: stop-apache.yml
+# 
+# This playbook just stops apache, that's it!
+#
+
+- name:  Stop apache
+  hosts: webservers 
+  become: yes
+  roles:
+
+    # Call the role to stop tomcat
+    # no parameters
+    
+  - role: operations/stop-apache 
+   
