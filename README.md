@@ -163,3 +163,13 @@ Meeting Notes
 Session 5, Friday Afternoon
 
 Recap
+
+completed initial deployment, started on ops tasks
+created start/stop for tomcat
+
+Today
+- fixed tomcat war deployment
+- show ansible deployment war 
+- plan for apache start/stop
+- restart
+- start all

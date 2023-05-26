@@ -1,5 +1,6 @@
+# file: inventories/preprod/group_vars/all.yml
 #
-# This file contains variables that apply to ALL groups
+# This file contains variables that apply to ALL groups in the PREPROD environment
 #
 
 #
@@ -12,3 +13,8 @@ host_ips:
   - 192.168.2.169	ansible-4 demo-apps-tomcat-2
   - 192.168.2.170	ansible-5 demo-apps-lb
   - 192.168.2.171	ansible-6 demo-paz-lb
+
+#
+#  This contains the env-specific variable identifying the staging directory
+#
+staging_directory: "/Projects/Staging/CawJProject2Dep"

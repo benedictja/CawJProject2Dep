@@ -1,0 +1,4 @@
+# file: inventories/preprod/group_vars/appservers.yml
+#
+# This file contains variables that apply to the PREPROD appserver group
+#
