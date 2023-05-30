@@ -1,0 +1,27 @@
+---
+# file: stop-all.yml
+#
+#  This playbook will stop the entire service, all servers on all tiers
+#  NOTE: this does NOT stop the load balancers
+#
+
+#
+# Step 0 (because we don't have one) - Put up maintenance page :p
+#
+
+#
+# Step 1 - Stop  Web Tier
+#
+#
+# Step 1a - Stop Apaches
+#
+
+  - ansible.builtin.import_playbook: stop-apache.yml
+
+#
+# Step 2 - Stop the App Tier
+#
+#
+# Step 2b - Stop Tomcats
+#
+  - ansible.builtin.import_playbook: stop-tomcat.yml

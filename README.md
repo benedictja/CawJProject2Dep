@@ -173,3 +173,27 @@ Today
 - plan for apache start/stop
 - restart
 - start all
+
+
+Session 6, Tuesday Morning
+
+Description
+
+Last session we started working on the operational tasks.  We created playbooks to start/stop tomcat and apache as individual tasks.  We attempted to create a stop-all playbook, but ran into some obstacles. This is where we will pickup today.
+
+Objectives
+
+1) Debug the stop-all playbook and get it working.
+2) Write a start-all playbook
+3) Plan a restart playbook
+
+If we get all of this finished, then we can look at refactoring OR move on to our next operational task.
+
+Decisions
+
+1) For this version, we will focus on individual playbooks to get our start/stop tasks working BUT will revisit/refactor this once we've gained some experience.
+2) Try to reuse existing code where possible, including refactoring if necessary
+
+Notes
+
+
