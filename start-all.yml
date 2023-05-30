@@ -1,0 +1,32 @@
+---
+# file: start-all.yml
+#
+#  This playbook will start the entire service, all servers on all tiers
+#  NOTE: this does NOT start the load balancers
+#
+#  We will start the system back to front.
+#
+
+
+#
+# Step 1 - Start the App Tier
+#
+#
+# Step 1b - Start Tomcats
+#
+  - ansible.builtin.import_playbook: start-tomcat.yml
+
+#
+# Step 2 - Start  Web Tier 
+#
+#
+# Step 2a - Start Apaches
+#
+
+  - ansible.builtin.import_playbook: start-apache.yml
+
+#
+# Step 3(ish)
+#
+# Probably do smoke test
+#
