@@ -1,0 +1,4 @@
+- deploy maintenance page on loadbalancers
+    - add that in the infrasctructure.yml
+    - do we want to redeploy it everytime we go into maintenance mode
+- update loadbalancers to redirect traffic to the maintenance page instead of the PAZ servers
