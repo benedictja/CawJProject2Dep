@@ -1,0 +1,14 @@
+---
+# file: roles/infrastructure/deploy-maintenance-page/tasks/main.yml
+#
+# Copies the mainteance html file from <TBD> to the laodbalancers
+# webapps directory
+#
+
+- name: copy and replace maintenance page 
+  ansible.builtin.copy:
+    src: TBD # probably a staging directory ? can we use a file that is directly in our ansible project ?
+    dest: TBD
+    owner: TBD
+    group: TBD
+    mode: u=rwx,g=r,o=r
