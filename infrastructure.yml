@@ -16,4 +16,4 @@
   # do we need this one ? TBD
   #- role: common/os-patching
   
-  - role: infrastructure/deploy-maintenance-page
+  - role: infratructure/deploy-maintenance-page
