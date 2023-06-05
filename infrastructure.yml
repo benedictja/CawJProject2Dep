@@ -6,7 +6,7 @@
 #
 ---
 - name:  Deploy/Update Infrastructure (IaC)
-  hosts: loadbalancers 
+  hosts: vip 
   become: yes
   roles:
   #- role: common/install-lb
