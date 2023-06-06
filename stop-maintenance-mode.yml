@@ -1,0 +1,15 @@
+---
+# file: stop-maitenance-mode.yml
+#
+# description: this playbook remove the application from maintenance mode at the loadbalancers level
+#
+
+- name: stop maintenance mode
+  hosts: vip
+  become: yes
+  roles:
+
+    # Call the role to start maintenance mode
+    # no parameters
+    
+  - role: operations/stop-maintenance-mode 

@@ -1,0 +1,14 @@
+---
+# file: roles/infrastructure/deploy-maintenance-page/tasks/main.yml
+#
+# Copies the mainteance html file from <TBD> to the laodbalancers
+# webapps directory
+#
+
+- name: deploy maintenance page 
+  ansible.builtin.copy:
+    src: "{{staging_directory}}/maintenance/maintenance-page.html"
+    dest: /usr/share/nginx/html
+    owner: root
+    group: root
+    mode: u=rwx,g=r,o=r

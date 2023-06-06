@@ -1,0 +1,15 @@
+---
+# file: start-maitenance-mode.yml
+#
+# description: this playbook put the application in maintenance mode at the loadbalancers level
+#
+
+- name: start maintenance mode
+  hosts: vip
+  become: yes
+  roles:
+
+    # Call the role to start maintenance mode
+    # no parameters
+    
+  - role: operations/start-maintenance-mode 

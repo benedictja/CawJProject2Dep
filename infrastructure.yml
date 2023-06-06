@@ -6,7 +6,14 @@
 #
 ---
 - name:  Deploy/Update Infrastructure (IaC)
-  hosts: loadbalancers 
+  hosts: vip 
   become: yes
   roles:
   #- role: common/install-lb
+  - role: common/motd 
+    system_manager: james.benedict@ssc-spc.gc.ca
+  
+  # do we need this one ? TBD
+  #- role: common/os-patching
+  
+  - role: infratructure/deploy-maintenance-page
