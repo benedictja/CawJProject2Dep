@@ -4,6 +4,9 @@
 # This will put the application back online
 #
 
-# modify file in NGINX to direct traffic to the PAZ servers
+# modify file nin NGINX to direct traffic to the PAZ servers
 # don't know how to do that, never worked with NGINX before
-#- name: stop maintenance mode
+- name: stop maintenance mode
+  ansible.builtin.file:
+    path: /usr/share/nginx/html/under-maintenance.html
+    state: absent

@@ -8,3 +8,8 @@
 # don't know how to do that, never worked with NGINX before
 #- name: start maintenance mode
   
+- name: start maintenance mode
+  ansible.builtin.copy:
+    src: /usr/share/nginx/html/maintenance-page.html
+    dest: /usr/share/nginx/html/under-maintenance.html
+    remote_src: yes
