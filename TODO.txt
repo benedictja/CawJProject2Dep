@@ -1,7 +1,5 @@
 - deploy maintenance page on loadbalancers
-    - add that in the infrasctructure.yml
     - do we want to redeploy it everytime we go into maintenance mode ?
-    - can we take a file from the Ansible project as a source to deploy the maintenance page ? 
 - update loadbalancers to redirect traffic to the maintenance page instead of the PAZ servers
-    - how to update the file(s) to change the config on the NGINX using ansible ?
-        - do we try to find specific line in a config file and update it ? 
+    - change maintenance-page.html to under-maitenance.html to enter maintenance mode
+    - change under-maitenance.html to maintenance-page.html to exit maintenance mode
