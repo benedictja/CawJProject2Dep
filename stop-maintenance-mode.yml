@@ -5,7 +5,7 @@
 #
 
 - name: stop maintenance mode
-  hosts: loadbalancers
+  hosts: vip
   become: yes
   roles:
 
