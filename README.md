@@ -183,9 +183,9 @@ Last session we started working on the operational tasks.  We created playbooks 
 
 Objectives
 
-1) Debug the stop-all playbook and get it working.
-2) Write a start-all playbook
-3) Plan a restart playbook
+1) Debug the stop-all playbook and get it working. - done
+2) Write a start-all playbook - done
+3) Plan a restart playbook - done
 
 If we get all of this finished, then we can look at refactoring OR move on to our next operational task.
 
@@ -196,4 +196,29 @@ Decisions
 
 Notes
 
+- the stop-all was declaring a state that was "invalid" (tomcats don't exist on apache nodes)
+- added an additional layer to the stop-all to import the stop playbooks instead of calling the roles directly.
+- used what we learned to do the start-all
+
+now for restart
+
+Apache restart v Tomcat restart. - This week
+- restart for apache
+- stop, check pid, start for tomcat
+
+Maintenance Page
+- Create VIP (even if its just an alais. http://demo-pub-ip/) 
+- How do we do a maintenance page?
+   - NGNIX LB manages maintenance page/OOS 
+   - Create maintenance page server
+   - Write ansible to change LB config and restart (Automating Maintenance Page - Ops)!!!
+      - maintenance page up
+      - maintenance page down
+      
+If anyone wants to do IaC part for maintenance page, let me know
+Next week, we will write maintenance page ops.
+
+Sometime (this week or next) we will update the host map to add a VIP.
+
+Ansible Control ext ssh. $ ssh -p 2022 ansiblead@142.134.29.122 
 
