@@ -1,5 +1,0 @@
-- deploy maintenance page on loadbalancers
-    - do we want to redeploy it everytime we go into maintenance mode ?
-- update loadbalancers to redirect traffic to the maintenance page instead of the PAZ servers
-    - change maintenance-page.html to under-maitenance.html to enter maintenance mode
-    - change under-maitenance.html to maintenance-page.html to exit maintenance mode
