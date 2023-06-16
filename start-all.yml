@@ -30,3 +30,12 @@
 #
 # Probably do smoke test
 #
+
+#
+# Step 4
+#
+# Very last step, we are ready to go live. 
+# Remove maintenance page
+#
+
+  - ansible.builtin.import_playbook: stop-maintenance-mode.yml
