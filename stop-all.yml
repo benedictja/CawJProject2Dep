@@ -9,6 +9,8 @@
 # Step 0 (because we don't have one) - Put up maintenance page :p
 #
 
+  - ansible.builtin.import_playbook: start-maintenance-mode.yml
+
 #
 # Step 1 - Stop  Web Tier
 #
