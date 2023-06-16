@@ -62,14 +62,14 @@
 #
 - name: copy domain.key to pki directory
   ansible.builtin.copy:
-    src: files/domain.key
+    src: "{{ env_specific }}/certs/domain.key"
     dest: /etc/pki/tls/private/domain.key
     owner: root
     group: root
     mode: '0644'
 - name: copy domain.crt to pki directory
   ansible.builtin.copy:
-    src: files/domain.crt
+    src: "{{ env_specific }}/certs/domain.crt"
     dest: /etc/pki/tls/certs/domain.crt
     owner: root
     group: root

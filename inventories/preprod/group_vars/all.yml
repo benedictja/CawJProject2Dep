@@ -18,3 +18,4 @@ host_ips:
 #  This contains the env-specific variable identifying the staging directory
 #
 staging_directory: "/Projects/Staging/CawJProject2Dep"
+env_specific: "{{ staging_directory }}/Inventories/preprod"
