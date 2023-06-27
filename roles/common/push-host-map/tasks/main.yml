@@ -5,6 +5,7 @@
 #
 # The host map is stored in the host_ips vector, in vars/main.yml
 #
+# may not be needed for envs that have DNS
 
 - name: Add a line to a file
   ansible.builtin.lineinfile:

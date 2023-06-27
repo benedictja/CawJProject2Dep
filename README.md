@@ -222,3 +222,31 @@ Sometime (this week or next) we will update the host map to add a VIP.
 
 Ansible Control ext ssh. $ ssh -p 2022 ansiblead@142.134.29.122 
 
+Session 7 (2023-06-16)
+
+Sorry for missing the last few sessions... PRD Issues
+
+Description
+
+Time to get back to where we left off, writing operational scripts.
+
+Session 8 (2023-06-27)
+
+Description
+
+I'm going to do a "review and refactor" to identify any hard-coded information and move it to environmental specific and test.  
+
+To do this, we will need to:
+- identify any hard-coded attributes or files
+- attributes will need to be moved to variables
+- files will need to be "templated" 
+   - create variables for anything hard coded
+   - replace hard-coding with new variables
+   - move modified file to template directory
+- some content/etc will need to be picked up from the Staging area
+
+If we finish that with enough time, then I would like to add the loadbalancer deployment/config to the base package.
+
+
+
+For friday's session I'd like to get back to ops scripting. I want to add script to push certificates and password updates.
