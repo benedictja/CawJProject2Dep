@@ -1,7 +1,9 @@
 ---
+# TODO: override defaults in inventories/env/all.yml
+#
 tomcat_archive_url: https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_ver }}/bin/apache-tomcat-{{ tomcat_ver }}.tar.gz
 tomcat_archive_dest: /tmp/apache-tomcat-{{ tomcat_ver }}.tar.gz
-tomcat_ver: 9.0.64                          # Tomcat version to install
+tomcat_ver: 9.0.64                          # Tomcat version to install -- TODO: why?!?
 ui_manager_user: manager                    # User who can access the UI manager section only
 ui_manager_pass: Str0ngManagerPassw3rd      # UI manager user password
 ui_admin_username: admin                    # User who can access bpth manager and admin UI sections
