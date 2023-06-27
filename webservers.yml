@@ -15,7 +15,6 @@
     #   specifying a parameter here will override anything specified in the defaults
 
   - role: common/motd 
-    system_manager: james.benedict@ssc-spc.gc.ca
 
     # check for any package updates and launch patching tool
     # note: this application will always upgrade to the LATEST version of all packages
