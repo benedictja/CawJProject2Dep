@@ -4,6 +4,17 @@
 #
 
 #
+# env_name
+#
+# Specifies the name of the environment, current options are:
+# DEV - local development
+# PRE - PredProd
+# PRD - Production
+#
+
+env_name: PRE
+
+#
 # host_ips contains the IP Address and host/alias mappings for this environment
 #
 host_ips:
