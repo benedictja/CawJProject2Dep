@@ -247,6 +247,4 @@ To do this, we will need to:
 
 If we finish that with enough time, then I would like to add the loadbalancer deployment/config to the base package.
 
-
-
 For friday's session I'd like to get back to ops scripting. I want to add script to push certificates and password updates.
