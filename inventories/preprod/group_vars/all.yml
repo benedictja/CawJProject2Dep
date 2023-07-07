@@ -19,3 +19,20 @@ host_ips:
 #
 staging_directory: "/Projects/Staging/CawJProject2Dep"
 env_specific: "{{ staging_directory }}/Inventories/preprod"
+
+#
+# This variable defines the platform for the env
+# valid values
+# EDC - Endstate DataCenter (e.g VMs with LACMS)
+# Legacy - typical VMs 
+# LegNoDNS - VMs without DNS
+# OCP - OpenShift
+#
+# hosting_platform
+# valid values
+# ESX
+# AWS
+# Azure
+# OCP
+#
+env_type: "LegNoDNS"
