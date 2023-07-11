@@ -4,6 +4,7 @@
 # Copies the mainteance html file from <TBD> to the laodbalancers
 # webapps directory
 #
+# TODO: template html and remove it from staging area.
 
 - name: deploy maintenance page 
   ansible.builtin.copy:

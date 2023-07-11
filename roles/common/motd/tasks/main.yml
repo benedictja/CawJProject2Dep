@@ -1,7 +1,7 @@
 ---
 # tasks for motd example
 - name: copy motd to /etc/motd
-  template: 
+  ansible.builtin.template: 
     src: templates/motd.j2
     dest: /etc/motd
     owner: root

@@ -30,9 +30,9 @@
 # 
 # Create and index.html default page 
 #
-- name: copying index.html
-  ansible.builtin.copy:
-    src: files/index.html
+- name: copying from tempalte to index.html
+  ansible.builtin.template:
+    src: templates/index.j2
     dest: /var/www/html/index.html
     owner: root
     group: root

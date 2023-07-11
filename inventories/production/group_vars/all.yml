@@ -1,0 +1,16 @@
+# file: inventories/preprod/group_vars/all.yml
+#
+# This file contains variables that apply to ALL groups in the PREPROD environment
+#
+
+#
+# host_ips contains the IP Address and host/alias mappings for this environment
+#
+host_ips:
+#TBD
+
+#
+#  This contains the env-specific variable identifying the staging directory
+#
+staging_directory: "/Projects/Staging/CawJProject2Dep"
+env_specific: "{{ staging_directory }}/Inventories/production"
