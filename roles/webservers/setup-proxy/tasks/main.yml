@@ -51,8 +51,8 @@
 # push supplied ssl.conf
 #
 - name: update apache ssl.conf
-  ansible.builtin.copy:
-    src: files/ssl.conf
+  ansible.builtin.template:
+    src: templates/ssl.conf.j2
     dest: /etc/httpd/conf.d/ssl.conf
     owner: root
     group: root

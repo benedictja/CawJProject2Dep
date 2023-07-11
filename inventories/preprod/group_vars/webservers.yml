@@ -3,4 +3,21 @@
 # This file contains variables that apply to the PREPROD appserver group
 #
 
+#
+# The email address of the web server administrator
+#
 web_admin_email: benedictja@gmail.com
+
+#
+# web application proxy context
+#
+# ProxyPass /<web_application_context> <apps_proxy_url>
+#
+web_application_context: demo 
+apps_proxy_url: http://demo-apps-lb:80/helloworld
+
+#
+# SSL Certificate and key names
+#
+ssl_cert_name: domain.crt
+ssl_key_name: domain.key 
