@@ -1,0 +1,6 @@
+# file: inventories/preprod/group_vars/webservers.yml
+#
+# This file contains variables that apply to the PREPROD appserver group
+#
+
+web_admin_email: benedictja@gmail.com
