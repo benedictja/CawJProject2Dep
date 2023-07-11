@@ -41,8 +41,8 @@
 # Push supplied version of httpd.conf
 #
 - name: push httpd.conf
-  ansible.builtin.copy:
-    src: files/httpd.conf
+  ansible.builtin.template:
+    src: templates/httpd.conf.j2
     dest: /etc/httpd/conf/httpd.conf
     owner: root
     group: root
@@ -82,8 +82,8 @@
 # push proxy.conf
 #
 - name: setup proxy.conf
-  ansible.builtin.copy:
-    src: files/proxy.conf
+  ansible.builtin.template:
+    src: templtes/proxy.conf.j2
     dest: /etc/httpd/conf.d/proxy.conf
     owner: root
     group: root
