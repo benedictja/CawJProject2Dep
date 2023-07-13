@@ -1,0 +1,8 @@
+---
+# Test Tomcat Servers Connectivity
+#
+- name: Ping Tomcat Servers
+  hosts: tomcatservers
+  tasks:
+    - name: Test Tomcat Servers Connectivity
+      ansible.windows.win_ping:
