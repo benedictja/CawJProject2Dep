@@ -30,7 +30,7 @@
 # 
 # Create and index.html default page 
 #
-- name: copying from tempalte to index.html
+- name: copying from template to index.html
   ansible.builtin.template:
     src: templates/index.j2
     dest: /var/www/html/index.html
@@ -83,7 +83,7 @@
 #
 - name: setup proxy.conf
   ansible.builtin.template:
-    src: templtes/proxy.conf.j2
+    src: templates/proxy.conf.j2
     dest: /etc/httpd/conf.d/proxy.conf
     owner: root
     group: root
