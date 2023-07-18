@@ -1,4 +1,10 @@
-# file: inventories/preprod/group_vars/all.yml
+# file: inventories/preprod/group_vars/windowsservers.yml
+#
+# TODO: embed password in keystore
+#
+# NOTE: windows requires the ansible.windows collection
+#       
+# can be installed with $ ansible-galaxy collection install ansible.windows
 #
 ansible_user: ansiblead
 ansible_password: Ans1bl3!
