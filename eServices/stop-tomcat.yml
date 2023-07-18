@@ -1,0 +1,11 @@
+---
+# Stop Tomcat service
+
+- name: Stop Tomcat service
+  hosts: tomcatservers
+  tasks:
+    - name: Set Tomcat service startup mode to manual and ensure it is stopped
+      ansible.windows.win_service:
+        name: .TOMCAT_OPENAM
+        start_mode: manual
+        state: stopped
