@@ -1,0 +1,40 @@
+---
+# Install Tomcat Server
+
+- name: Install Tomcat Server
+  hosts: tomcatservers
+  tasks:
+    - name: Create root directory
+      ansible.windows.win_file:
+        path: D:\Tomcat
+        state: directory
+
+    - name: Create Java subdirectory
+      ansible.windows.win_file:
+        path: D:\Tomcat\Java
+        state: directory
+
+    - name: Create Tomcat subdirectory
+      ansible.windows.win_file:
+        path: D:\Tomcat\Tomcat
+        state: directory
+
+    - name: Create Java source directory based on version
+      ansible.windows.win_file:
+        path: D:\Tomcat\Java\jdk1.8.0_333
+        state: directory
+
+    # Preparing the Software
+    # Copy Tomcat installation files from temporary location
+    - name: Copy Tomcat installation files
+      ansible.windows.win_copy:
+        src: C:\Temp\apache-tomcat-wass/
+        dest: D:\Tomcat\Tomcat
+        remote_src: true
+
+    # Copy JAVA files from temporary location
+    - name: Copy JAVA files
+      ansible.windows.win_copy:
+        src: C:\Temp\jdk1.8.0_333/
+        dest: D:\Tomcat\Java\jdk1.8.0_333
+        remote_src: true

@@ -1,0 +1,13 @@
+---
+# Launch the Tomcat Installer
+#cmd: '"D:\Tomcat\install-tomcat.bat"'
+
+- name: Launch the Tomcat Installer
+  hosts: tomcatservers
+  tasks:
+    - name: Launch the Tomcat Installer
+      ansible.windows.win_command:
+        argv:
+        - D:\Tomcat\Tomcat\bin\service.bat
+        - install
+        #cmd: '"D:\Tomcat\Tomcat\install-tomcat.bat"'

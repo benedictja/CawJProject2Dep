@@ -1,0 +1,84 @@
+---
+# Install all components needed to have Tomcat running on the target server(s) 
+
+- name: Install Tomcat
+  hosts: tomcatservers
+  tasks:
+    ### Set environment variables required to install as a service ###
+    - name: Set CATALINA Variable
+      ansible.windows.win_path:
+        state: present
+        name: CATALINA_HOME
+        elements: D:\Tomcat\Tomcat
+        scope: user
+
+    - name: Set JAVA Runtime Environment Variable
+      ansible.windows.win_path:
+        state: present
+        name: JRE_HOME
+        elements: D:\Tomcat\Java\jdk1.8.0_333\jre
+        scope: user
+    
+    - name: Set Tomcat Service Name Variable
+      ansible.windows.win_path:
+        state: present
+        name: SERVICE_NAME
+        elements: TOMCAT9
+        scope: user
+
+    - name: Set Tomcat Service PR Display Name Variable
+      ansible.windows.win_path:
+        state: present
+        name: PR_DISPLAYNAME
+        elements: .TOMCAT9
+        scope: user
+
+    - name: Set Tomcat Service PR Description Name Variable
+      ansible.windows.win_environment:
+        state: present
+        name: PR_DESCRIPTION
+        value: '"Apache Tomcat Server Version 9.0.78"'
+        level: user
+
+    ### Create the directory structure ###
+    - name: Create root directory
+      ansible.windows.win_file:
+        path: D:\Tomcat
+        state: directory
+
+    - name: Create Java subdirectory
+      ansible.windows.win_file:
+        path: D:\Tomcat\Java
+        state: directory
+
+    - name: Create Tomcat subdirectory
+      ansible.windows.win_file:
+        path: D:\Tomcat\Tomcat
+        state: directory
+
+    - name: Create Java source directory based on version
+      ansible.windows.win_file:
+        path: D:\Tomcat\Java\jdk1.8.0_333
+        state: directory
+
+    ### Preparing the Software ###
+    # Copy Tomcat installation files from temporary location
+    - name: Copy Tomcat installation files
+      ansible.windows.win_copy:
+        src: C:\Temp\apache-tomcat-wass/
+        dest: D:\Tomcat\Tomcat
+        remote_src: true
+
+    # Copy JAVA files from temporary location
+    - name: Copy JAVA files
+      ansible.windows.win_copy:
+        src: C:\Temp\jdk1.8.0_333/
+        dest: D:\Tomcat\Java\jdk1.8.0_333
+        remote_src: true
+
+    ### Launch the Tomcat Installer ###
+    - name: Launch the Tomcat Installer
+      ansible.windows.win_command:
+        argv:
+        - D:\Tomcat\Tomcat\bin\service.bat
+        - install

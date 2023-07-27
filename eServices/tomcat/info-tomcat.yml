@@ -1,0 +1,13 @@
+---
+# Listing Tomcat service information
+
+- name: Listing Tomcat service information
+  hosts: tomcatservers
+  tasks:
+    - name: Get Tomcat service information
+      ansible.windows.win_service_info:
+        name: TOMCAT9
+      register: service_info
+
+    - name: Service output
+      ansible.builtin.debug: var=service_info

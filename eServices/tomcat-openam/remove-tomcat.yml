@@ -1,0 +1,11 @@
+---
+# Remove Tomcat
+
+- name: Remove Tomcat
+  hosts: tomcatservers
+  tasks:
+    - name: Uninstall the Tomcat Service
+      ansible.windows.win_command:
+        argv:
+        - D:\Tomcat\Tomcat\bin\tomcat9
+        - //DS//TOMCAT_OPENAM
