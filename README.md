@@ -253,3 +253,5 @@ For friday's session I'd like to get back to ops scripting. I want to add script
 Session 9 (2023-07-07) Refactoring for templates
 
 ...
+
+Session 10 - Welcome Back
