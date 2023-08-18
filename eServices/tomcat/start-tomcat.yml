@@ -1,11 +1,27 @@
 ---
-# Start Tomcat service
+# ----------------------------------------------------------------------------------------------
+# Script Name: start-tomcat.yml
+# Version: 1.0
+# Author: Eric Lacroix
+# Date: 17/08/2023
+#
+# Description: Start Tomcat service.
+#
+# ----------------------------------------------------------------------------------------------
 
 - name: Start Tomcat service
   hosts: tomcatservers
   tasks:
     - name: Set Tomcat service startup mode to manual and ensure it is started
       ansible.windows.win_service:
-        name: TOMCAT9
+        name: '{{service_name}}'
         start_mode: manual
         state: started
+
+    - name: Confirm Tomcat service state to be started
+      ansible.windows.win_service_info:
+        name: '{{service_name}}'
+      register: service_info
+
+    - debug: 
+        msg: "{{service_info.services[0].state}}"

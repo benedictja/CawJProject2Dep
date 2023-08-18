@@ -1,10 +1,34 @@
-# file: inventories/preprod/group_vars/all.yml
+# file: inventories/preprod/group_vars/tomcatservers.yml
 #
 # This file contains variables that apply to the PREPROD Tomcat server group
 #
+
+# Remote server connection
 ansible_user: ansiblead
 ansible_password: Ans1bl3!
 ansible_port: 5986
 ansible_connection: winrm
 ansible_winrm_transport: basic
 ansible_winrm_server_cert_validation: ignore
+
+# Installation and configuration
+install_source: C:\Temp
+tomcat_source: apache-tomcat-wass
+java_source: jdk1.8.0_333
+tomcat_root: D:\Tomcat
+tomcat_home: Tomcat
+tomcat_sourcecode: D:\SourceCode
+java_home: Java 
+
+service_install_script: service.bat
+service_name: TOMCAT9
+service_display_name: .TOMCAT9
+service_description: "Apache Tomcat Server Version 9.0.78"
+
+# Deployment
+tomcat_staging: "/Projects/Staging/CawJProject2Dep/WAR"
+tomcat_war: helloworld.war
+tomcat_app: helloworld
+tomcat_temp: temp
+tomcat_log: TomcatServices.log
+tomcat_backup: Backup

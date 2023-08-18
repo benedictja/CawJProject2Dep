@@ -1,11 +1,73 @@
 ---
-# Remove Tomcat
+# ----------------------------------------------------------------------------------------------
+# Script Name: remove-tomcat.yml
+# Version: 1.0
+# Author: Eric Lacroix
+# Date: 17/08/2023
+#
+# Description: Remove Tomcat and all components.
+#
+# ----------------------------------------------------------------------------------------------
 
 - name: Remove Tomcat
   hosts: tomcatservers
   tasks:
+    # Stop Tomcat and confirm service state
+    - name: Set Tomcat service startup mode to manual and ensure it is stopped
+      ansible.windows.win_service:
+        name: '{{service_name}}'
+        start_mode: manual
+        state: stopped
+
+    - name: Confirm Tomcat service state
+      ansible.windows.win_service_info:
+        name: '{{service_name}}'
+      register: service_info
+    - debug: 
+        msg: "{{service_info.services[0].state}}"
+
+    # Remove Tomcat
     - name: Uninstall the Tomcat Service
       ansible.windows.win_command:
         argv:
-        - D:\Tomcat\Tomcat\bin\tomcat9
+        - '{{tomcat_root}}\{{tomcat_home}}\bin\tomcat9'
         - //DS//Tomcat9
+      when: service_info.services[0].state == "stopped"
+
+    # Remove directory structure
+    # Remove root directory
+    - name: Remove root directory
+      ansible.windows.win_file:
+        path: '{{tomcat_root}}'
+        state: absent
+
+    # Remove environment variables
+    - name: Remove CATALINA Variable
+      ansible.windows.win_environment:
+        state: absent
+        name: CATALINA_HOME
+        level: user
+
+    - name: Remove JAVA Runtime Environment Variable
+      ansible.windows.win_environment:
+        state: absent
+        name: JRE_HOME
+        level: user
+    
+    - name: Remove Tomcat Service Name Variable
+      ansible.windows.win_environment:
+        state: absent
+        name: SERVICE_NAME
+        level: user
+    
+    - name: Remove Tomcat Service PR Display Name Variable
+      ansible.windows.win_environment:
+        state: absent
+        name: PR_DISPLAYNAME
+        level: user
+
+    - name: Remove Tomcat Service PR Description Name Variable
+      ansible.windows.win_environment:
+        state: absent
+        name: PR_DESCRIPTION
+        level: user

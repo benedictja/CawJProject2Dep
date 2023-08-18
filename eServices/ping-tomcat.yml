@@ -1,8 +1,19 @@
 ---
-# Test Tomcat Servers Connectivity
+# ----------------------------------------------------------------------------------------------
+# Script Name: ping-tomcat.yml
+# Version: 1.0
+# Author: Eric Lacroix
+# Date: 17/08/2023
 #
+# Description: Test Tomcat Servers Connectivity.
+#
+# ----------------------------------------------------------------------------------------------
+
 - name: Ping Tomcat Servers
   hosts: tomcatservers
   tasks:
     - name: Test Tomcat Servers Connectivity
       ansible.windows.win_ping:
+      register: ping_info
+    - debug: 
+        msg: "{{ping_info}}"

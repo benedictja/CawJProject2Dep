@@ -1,0 +1,77 @@
+---
+# ----------------------------------------------------------------------------------------------
+# Script Name: deploy-tomcat.yml
+# Version: 1.0
+# Author: Eric Lacroix
+# Date: 17/08/2023
+#
+# Description: Deploy Tomcat WAR file.
+#
+# ----------------------------------------------------------------------------------------------
+
+- name: Deploy Tomcat WAR File
+  hosts: tomcatservers
+  gather_facts: yes
+  tasks:
+    # Preparing the Deployment
+    # Stop Tomcat and confirm service state
+    - name: Set Tomcat service startup mode to manual and ensure it is stopped
+      ansible.windows.win_service:
+        name: '{{service_name}}'
+        start_mode: manual
+        state: stopped
+
+    - name: Confirm Tomcat service state
+      ansible.windows.win_service_info:
+        name: '{{service_name}}'
+      register: service_info
+    - debug: 
+        msg: "{{service_info.services[0].state}}"
+    
+    # Proceeding with cleanup and install
+    # Backup Tomcat previous WAR file
+    - name: Backup Tomcat previous WAR file
+      ansible.windows.win_copy:
+        src: '{{tomcat_root}}\{{tomcat_home}}\webapps\{{tomcat_war}}'
+        dest: '{{tomcat_root}}\{{tomcat_backup}}\{{tomcat_war}}.{{ansible_date_time.date}}'
+        remote_src: true
+      when: service_info.services[0].state == "stopped"
+
+    # Remove primary directory
+    - name: Remove primary directory
+      ansible.windows.win_file:
+        path: '{{tomcat_root}}\{{tomcat_home}}\webapps\{{tomcat_app}}'
+        state: absent
+
+    # Remove temp directory content
+    - name: Remove temp directory content
+      ansible.windows.win_powershell:
+        script: |
+          Get-ChildItem -Path '{{tomcat_root}}\{{tomcat_home}}\{{tomcat_temp}}' -Include * -Recurse | foreach { $_.Delete()}
+    
+    # Remove work path directory
+    - name: Remove work path directory
+      ansible.windows.win_file:
+        path: '{{tomcat_root}}\{{tomcat_home}}\work\Catalina\localhost\{{tomcat_app}}'
+        state: absent
+    
+    # Remove Tomcat current WAR file
+    - name: Remove Tomcat current WAR file
+      ansible.windows.win_file:
+        path: '{{tomcat_root}}\{{tomcat_home}}\webapps\{{tomcat_war}}'
+        state: absent
+    
+    # Confirm Tomcat current WAR file has been deleted
+    - name: Confirm Tomcat current WAR file has been deleted
+      ansible.windows.win_stat:
+        path: '{{tomcat_root}}\{{tomcat_home}}\webapps\{{tomcat_war}}'
+      register: current_war_info
+    - debug: 
+        msg: "{{current_war_info.stat.exists}}"
+    
+    # Copy Tomcat new WAR file
+    - name: Copy Tomcat new WAR file
+      ansible.builtin.copy:
+        src: '{{tomcat_staging}}/{{tomcat_war}}'
+        dest: '{{tomcat_root}}\{{tomcat_home}}\webapps'
+      when: (service_info.services[0].state == "stopped") and (not current_war_info.stat.exists)
