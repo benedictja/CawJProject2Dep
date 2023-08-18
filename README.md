@@ -255,3 +255,64 @@ Session 9 (2023-07-07) Refactoring for templates
 ...
 
 Session 10 - Welcome Back
+
+Important Note: this is the fist time i've tried to screen-share since it broke on me last week.
+
+Today's plan is to re-evaluate a few things.  As many of you may have noticed, "automation" has become a more relevant topic inside Platform Services, and HSB.  For that reason, the group will be looking toward some of my PoC work for some near-term deliverables. 
+
+As such, I want to review my PoC for a few things:
+1) Add IaC for Load Balancers
+   - existing LB code wasn't ported to new project
+   - need operational scripting
+   - port KP's maintenance page?
+   - break LB into VIP/PAZ and APPS
+2) Create hooks for Eric's project
+   - windows tomcat server
+   - IIS static content
+   - eventual container support
+3) Security and SecOps
+   this work will tie in to a project that DrewW will be working on
+   - create and install ssl cert on VIP/PAZ
+   - push password change for aniblead and apache users
+
+Anything else I can think of?
+
+Git discussion
+- I want to merge my template changes into my main branch, so lets talk branching and merging
+- since more people (eric/drew) will be making changes to this PoC, we need to come to some common agreements
+
+Branches
+
+Q. When do we create a branch? 
+A. Any time you want to make and test a change to the project. Yes, ANY.
+   So far, we've been working on the main branch, that's bad practice.
+
+Q. How do I name my branch?
+A. There are many ways to name a branch, in most cases it should be based on a task or CRQ number, but since we don't have that we will use feature name.  For this project, i propose the following conventions:
+
+Dev Branches - a "dev" branch where users make and test their code changes.  Changes will eventually be merged back into a "release" branch and/or main.
+
+<username_feature>
+
+e.g. If I (benedictja) wanted to create a branch to write the PAZ LB code, I would do something like
+$ git checkout main
+$ git checkout -b benedictja_PAZ_LB_IaC
+
+Dev branches are typically transient, and only last as long as the development work is ongoing.  Eventually they will be merged into a main and/or release branch.
+
+Main (Release branches)
+
+These branches are for specific releases. Unlike dev branches, they will usually stay around forever.
+
+<releaseType_releaseMajor[_releaseMinor]>
+
+e.g.
+$ git checkout main
+$ git checkout -b RELEASE_10
+
+we could also create a sub-release beneath, 
+e.g.
+git checkout RELEASE_10
+git checkout -b PATCH_10_1
+
+
