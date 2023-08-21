@@ -274,6 +274,7 @@ As such, I want to review my PoC for a few things:
    this work will tie in to a project that DrewW will be working on
    - create and install ssl cert on VIP/PAZ
    - push password change for aniblead and apache users
+4) PortWASS-like functionality and/or LACMS compliance
 
 Anything else I can think of?
 
