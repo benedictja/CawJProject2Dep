@@ -1,0 +1,21 @@
+# file: infrastructure.yml
+# 
+# This playbook defines the IaC (Infrastructure as Code) component.  I kept this separate because it is NOT middleware.
+# 
+# Currently, we only setup load balancers
+#
+---
+- name:  Deploy/Update Infrastructure (IaC)
+  hosts: vip 
+  become: yes
+  vars:
+    role_root: '../../../'
+  roles:
+  #- role: common/install-lb
+  - role: "{{role_root}}common/motd"
+    system_manager: james.benedict@ssc-spc.gc.ca
+  
+  # do we need this one ? TBD
+  #- role: common/os-patching
+  
+  - role: "{{role_root}}infrastructure/deploy-maintenance-page"
