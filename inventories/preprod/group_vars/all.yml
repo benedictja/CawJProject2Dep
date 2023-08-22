@@ -12,7 +12,7 @@
 # PRD - Production
 #
 
-env_name: PRE
+env_name: PRE # TODO: align with env_specific
 
 #
 # host_ips contains the IP Address and host/alias mappings for this environment
@@ -29,7 +29,7 @@ host_ips:
 #  This contains the env-specific variable identifying the staging directory
 #
 staging_directory: "/Projects/Staging/CawJProject2Dep"
-env_specific: "{{ staging_directory }}/Inventories/preprod"
+env_specific: "{{ staging_directory }}/Inventories/{{env_name}}"
 
 #
 # This variable defines the platform for the env

@@ -30,7 +30,7 @@
 # 
 # Create and index.html default page 
 #
-- name: copying from tempalte to index.html
+- name: copying from template to index.html
   ansible.builtin.template:
     src: templates/index.j2
     dest: /var/www/html/index.html
@@ -41,8 +41,8 @@
 # Push supplied version of httpd.conf
 #
 - name: push httpd.conf
-  ansible.builtin.copy:
-    src: files/httpd.conf
+  ansible.builtin.template:
+    src: templates/httpd.conf.j2
     dest: /etc/httpd/conf/httpd.conf
     owner: root
     group: root
@@ -51,8 +51,8 @@
 # push supplied ssl.conf
 #
 - name: update apache ssl.conf
-  ansible.builtin.copy:
-    src: files/ssl.conf
+  ansible.builtin.template:
+    src: templates/ssl.conf.j2
     dest: /etc/httpd/conf.d/ssl.conf
     owner: root
     group: root
@@ -82,8 +82,8 @@
 # push proxy.conf
 #
 - name: setup proxy.conf
-  ansible.builtin.copy:
-    src: files/proxy.conf
+  ansible.builtin.template:
+    src: templates/proxy.conf.j2
     dest: /etc/httpd/conf.d/proxy.conf
     owner: root
     group: root
