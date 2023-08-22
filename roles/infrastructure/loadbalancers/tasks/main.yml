@@ -1,0 +1,35 @@
+---
+# file: infrastructure/loadbalancers/tasks/main.yml
+#
+# This is where the role's tasks go
+
+- name: nginx installed
+  ansible.builtin.dnf:
+    name: nginx
+    state: installed
+  tags: install nginx
+- name: setup proxy pass
+  ansible.builtin.copy:
+    src: config/nginx.conf
+    dest: /etc/nginx/nginx.conf
+    owner: root
+    group: root
+    mode: '0644'
+- name: open firewall
+  ansible.posix.firewalld:
+    service: http
+    state: enabled
+    immediate: true
+    permanent: true
+  tags: open firewall
+- name: nginx is running and enabled
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+  tags: start service and enable
+- name: Set httpd_can_network_connect flag on and keep it persistent across reboots
+  ansible.posix.seboolean:
+    name: httpd_can_network_connect
+    state: true
+    persistent: true
