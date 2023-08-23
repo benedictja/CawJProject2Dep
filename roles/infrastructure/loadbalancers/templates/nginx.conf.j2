@@ -1,4 +1,8 @@
+# Template for demo-paz-public vip
+# Author: benedictja
+#
 # For more information on configuration, see:
+# 
 #   * Official English Documentation: http://nginx.org/en/docs/
 #   * Official Russian Documentation: http://nginx.org/ru/docs/
 
@@ -46,8 +50,13 @@ http {
         server_name  _;
         root         /usr/share/nginx/html;
 
-        location / {
-            proxy_pass http://backends;
+        location /demo/ {
+            proxy_pass http://backends/demo/;
+            if (-f $document_root/under-maintenance.html)
+            {
+                return 503;
+
+            }
         }
 
         # Load configuration files for the default server block.

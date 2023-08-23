@@ -10,11 +10,15 @@
   become: yes
   vars:
     role_root: '../../../'
+
   roles:
-  #- role: common/install-lb
+  - role: "{{role_root}}common/push-host-map"
   - role: "{{role_root}}common/motd"
     system_manager: james.benedict@ssc-spc.gc.ca
-  
+
+  # call role to install paz lb
+  - role: "{{role_root}}infrastructure/loadbalancers"
+
   # do we need this one ? TBD
   #- role: common/os-patching
   
