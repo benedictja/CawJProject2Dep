@@ -72,6 +72,6 @@
     # Copy Tomcat new WAR file
     - name: Copy Tomcat new WAR file
       ansible.builtin.copy:
-        src: '{{tomcat_staging}}/{{tomcat_war}}'
+        src: '{{tomcat_staging_war}}/{{tomcat_war}}'
         dest: '{{tomcat_root}}\{{tomcat_home}}\webapps'
       when: (service_info.services[0].state == "stopped") and (not current_war_info.stat.exists)

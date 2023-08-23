@@ -12,13 +12,13 @@ ansible_winrm_transport: basic
 ansible_winrm_server_cert_validation: ignore
 
 # Installation and configuration
-install_source: C:\Temp
-tomcat_source: apache-tomcat-wass
-java_source: jdk1.8.0_333
 tomcat_root: D:\Tomcat
 tomcat_home: Tomcat
-tomcat_sourcecode: D:\SourceCode
-java_home: Java 
+java_home: Java
+tomcat_source: apache-tomcat-wass
+java_source: jdk1.8.0_333
+tomcat_source_compress: apache-tomcat-wass.zip
+java_source_compress: jdk1.8.0_333.zip
 
 service_install_script: service.bat
 service_name: TOMCAT9
@@ -26,7 +26,8 @@ service_display_name: .TOMCAT9
 service_description: "Apache Tomcat Server Version 9.0.78"
 
 # Deployment
-tomcat_staging: "/Projects/Staging/CawJProject2Dep/WAR"
+tomcat_staging_war: "/Projects/Staging/CawJProject2Dep/WAR"
+tomcat_staging_app: "/Projects/Staging/CawJProject2Dep/Tomcat"
 tomcat_war: helloworld.war
 tomcat_app: helloworld
 tomcat_temp: temp

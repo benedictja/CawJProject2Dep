@@ -76,19 +76,31 @@
         state: directory
 
     # Preparing the Software
-    # Copy Tomcat installation files from temporary location
-    - name: Copy Tomcat installation files
-      ansible.windows.win_copy:
-        src: '{{install_source}}\{{tomcat_source}}/'
-        dest: '{{tomcat_root}}\{{tomcat_home}}'
-        remote_src: true
+    # Copy Tomcat files from temporary location
+    - name: Copy Tomcat files
+      ansible.builtin.copy:
+        src: '{{tomcat_staging_app}}/{{tomcat_source_compress}}'
+        dest: '{{tomcat_root}}\{{tomcat_backup}}'
 
     # Copy JAVA files from temporary location
     - name: Copy JAVA files
-      ansible.windows.win_copy:
-        src: '{{install_source}}\{{java_source}}/'
+      ansible.builtin.copy:
+        src: '{{tomcat_staging_app}}/{{java_source_compress}}'
+        dest: '{{tomcat_root}}\{{tomcat_backup}}'
+    
+    # Unzip Tomcat file
+    - name: Unzip Tomcat file
+      win_unzip:
+        src: '{{tomcat_root}}\{{tomcat_backup}}\{{tomcat_source_compress}}'
+        dest: '{{tomcat_root}}\{{tomcat_home}}'
+        delete_archive: yes
+
+    # Unzip Java file
+    - name: Unzip Java file
+      win_unzip:
+        src: '{{tomcat_root}}\{{tomcat_backup}}\{{java_source_compress}}'
         dest: '{{tomcat_root}}\{{java_home}}\{{java_source}}'
-        remote_src: true
+        delete_archive: yes
 
     # Launch the Tomcat Installer
     - name: Launch the Tomcat Installer
