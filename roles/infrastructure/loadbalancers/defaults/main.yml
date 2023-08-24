@@ -1,0 +1,6 @@
+#
+# Defaults
+# currently no default set, because we want this to fail if the caller doesn't specify a zone
+# TODO: add a generic lb config for use when zone is empty
+---
+lb_zone: 

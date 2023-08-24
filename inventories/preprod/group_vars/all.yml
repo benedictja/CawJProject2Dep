@@ -30,9 +30,23 @@ host_ips:
   - 192.168.2.169	ansible-4 {{env_prefix}}-apps-tomcat-2
   - 192.168.2.170	ansible-5 {{env_prefix}}-apps-lb
   - 192.168.2.171	ansible-6 {{env_prefix}}-paz-lb
-  - 192.168.2.61	{{env_prefix}}-apps-tcw-2
-  - 192.168.2.60	{{env_prefix}}-apps-tcw-1
+  - 192.168.2.61	{{env_prefix}}-apps-tcw-2 {{env_prefix}}-apps-tomcat-3
+  - 192.168.2.60	{{env_prefix}}-apps-tcw-1 {{env_prefix}}-apps-tomcat-4 
+  
 
+#
+# these lists probably belong in a more specific location, but I wanted to keep all the servers in the same place
+# naming convention is lb_{{lb_zone}}
+#
+lb_paz:
+  - "{{env_prefix}}-paz-apache-1"
+  - "{{env_prefix}}-paz-apache-2"
+
+lb_apps:
+  - "{{env_prefix}}-apps-tomcat-1"
+  - "{{env_prefix}}-apps-tomcat-2"
+  - "{{env_prefix}}-apps-tomcat-3"
+  - "{{env_prefix}}-apps-tomcat-4"
 
 #
 #  This contains the env-specific variable identifying the staging directory

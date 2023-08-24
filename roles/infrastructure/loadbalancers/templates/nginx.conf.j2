@@ -1,6 +1,8 @@
 # Template for demo-paz-public vip
 # Author: benedictja
 #
+# trying to mod template to work for {{ lb_zone }}
+#
 # For more information on configuration, see:
 # 
 #   * Official English Documentation: http://nginx.org/en/docs/
@@ -21,8 +23,9 @@ events {
 http {
 
     upstream backends {
-        server 192.168.2.164:80;
-        server 192.168.2.162:80;
+        {% for server in lb_target_list %}
+        server {{ server }}:{{ lb_target_port }};
+        {% endfor %}
     }
 
     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
@@ -45,13 +48,13 @@ http {
     include /etc/nginx/conf.d/*.conf;
 
     server {
-        listen       80;
-        listen       [::]:80;
+        listen       {{ lb_listen_port }};
+        listen       [::]:{{ lb_listen_port }};
         server_name  _;
         root         /usr/share/nginx/html;
 
-        location /demo/ {
-            proxy_pass http://backends/demo/;
+        location {{ lb_listen_location }} {
+            proxy_pass {{ lb_proxy_target}};
             if (-f $document_root/under-maintenance.html)
             {
                 return 503;
@@ -70,7 +73,7 @@ http {
         location = /50x.html {
         }
     }
-
+{% if lb_zone != 'paz' %}
 # Settings for a TLS enabled server.
 #
 #    server {
@@ -97,6 +100,9 @@ http {
 #        location = /50x.html {
 #        }
 #    }
+{% else %}
+# nothing
+{% endif %}
 
 }
 

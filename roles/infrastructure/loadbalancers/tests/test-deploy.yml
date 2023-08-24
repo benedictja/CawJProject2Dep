@@ -18,6 +18,7 @@
 
   # call role to install paz lb
   - role: "{{role_root}}infrastructure/loadbalancers"
+    lb_zone: paz
 
   # do we need this one ? TBD
   #- role: common/os-patching
