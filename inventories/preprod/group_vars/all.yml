@@ -30,8 +30,10 @@ host_ips:
   - 192.168.2.169	ansible-4 {{env_prefix}}-apps-tomcat-2
   - 192.168.2.170	ansible-5 {{env_prefix}}-apps-lb
   - 192.168.2.171	ansible-6 {{env_prefix}}-paz-lb
-  - 192.168.2.61	{{env_prefix}}-apps-tcw-2 {{env_prefix}}-apps-tomcat-3
-  - 192.168.2.60	{{env_prefix}}-apps-tcw-1 {{env_prefix}}-apps-tomcat-4 
+  - 192.168.2.61 ansible-7 {{env_prefix}}-apps-tcw-2 {{env_prefix}}-apps-tomcat-3
+  - 192.168.2.60 ansible-8 {{env_prefix}}-apps-tcw-1 {{env_prefix}}-apps-tomcat-4 
+  - 192.168.2.178	ansible-9 {{env_prefix}}-mel-1
+
   
 
 #

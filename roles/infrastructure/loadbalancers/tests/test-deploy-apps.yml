@@ -6,26 +6,21 @@
 #
 ---
 - name:  Deploy/Update Infrastructure (IaC)
-  hosts: vip appslb
+  hosts: appslb 
   become: yes
-  roles:
-  # push the host maps to the lb
-  - role: common/push-host-map
+  vars:
+    role_root: '../../../'
 
-  #- role: common/install-lb
-  - role: common/motd 
+  roles:
+  - role: "{{role_root}}common/push-host-map"
+  - role: "{{role_root}}common/motd"
     system_manager: james.benedict@ssc-spc.gc.ca
-  
-    # call role to install paz lb
-  - role: infrastructure/loadbalancers
-    lb_zone: paz
-  
-    # call role to install apps lb
-  - role: infrastructure/loadbalancers
+
+  # call role to install paz lb
+  - role: "{{role_root}}infrastructure/loadbalancers"
     lb_zone: apps
 
   # do we need this one ? TBD
   #- role: common/os-patching
   
-  #- role: infrastructure/deploy-maintenance-page  
-
+  #- role: "{{role_root}}infrastructure/deploy-maintenance-page"

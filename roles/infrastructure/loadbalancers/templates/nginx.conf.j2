@@ -1,5 +1,5 @@
-# Template for demo-paz-public vip
-# Author: benedictja
+# Template for load balancers
+# Author: benedictja & gang
 #
 # trying to mod template to work for {{ lb_zone }}
 #
@@ -73,7 +73,7 @@ http {
         location = /50x.html {
         }
     }
-{% if lb_zone != 'paz' %}
+{% if lb_zone == 'paz' %}
 # Settings for a TLS enabled server.
 #
 #    server {

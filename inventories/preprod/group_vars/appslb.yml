@@ -1,0 +1,26 @@
+---
+#
+# general vars
+#
+# These vars are basic config parms for the lb
+#
+lb_zone: apps 
+lb_server_name: 
+
+#
+# listen vars
+#
+# these vars define the listener context, prot 
+lb_listen_port: 80
+lb_listen_location: /
+
+#
+# target vars
+#
+# these variables define parameters related to the server pool
+#
+lb_target_context: 
+lb_target_list: "{{ lb_apps }}"
+lb_target_port: 8080
+
+lb_proxy_target: http://backends
