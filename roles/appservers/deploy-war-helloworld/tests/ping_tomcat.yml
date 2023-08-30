@@ -1,0 +1,21 @@
+---
+# ----------------------------------------------------------------------------------------------
+# Script Name: ping-tomcat.yml
+# Version: 1.0
+# Author: Stolen from Eric Lacroix by benedictja
+# Date: 2023/08/29
+#
+# Description: Test Tomcat Servers Connectivity.
+#
+# ----------------------------------------------------------------------------------------------
+
+- name: Ping Tomcat Servers
+  hosts: windowsservers
+  vars_files:
+    - vault.yml
+  tasks:
+    - name: Test Tomcat Servers Connectivity
+      ansible.windows.win_ping:
+      register: ping_info
+    - debug: 
+        msg: "{{ping_info}}"
