@@ -5,6 +5,7 @@ Purpose: To add the Infrastructure as Code (IaC) for the project PAZ load balanc
 
 Tasks:
 
+
 Port the code from the original project
 - create/deploy LB
 - configure LB
