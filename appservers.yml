@@ -6,7 +6,7 @@
 
 - name:  Deploy/Update Application Tier
   hosts: appservers 
-  become: yes
+  #become: yes
   roles:
 
     # push any updates to the message of the day
@@ -14,16 +14,16 @@
     #   system_manager - contact email listed in the motd
     #   specifying a parameter here will override anything specified in the defaults
 
-  - role: common/motd 
-    system_manager: james.benedict@ssc-spc.gc.ca
+  #- role: common/motd 
+  #  system_manager: james.benedict@ssc-spc.gc.ca
 
     # check for any package updates and launch patching tool
     # note: this application will always upgrade to the LATEST version of all packages
-  - role: common/os-patching
+  #- role: common/os-patching
 
     # since we don't have dns, we will need to manually create /etc/hosts
     # we will be using a variable to define the hosts
-  - role: common/push-host-map
+  #- role: common/push-host-map
 
     # call the role to install and configure the appserver (tomcat)
   - role: appservers/setup-appserver-tomcat

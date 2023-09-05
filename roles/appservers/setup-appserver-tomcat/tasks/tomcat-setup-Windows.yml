@@ -9,106 +9,105 @@
 #
 # ----------------------------------------------------------------------------------------------
 
+# Set environment variables required to install Tomcat as a service
+- name: Set CATALINA Variable
+  ansible.windows.win_path:
+    state: present
+    name: CATALINA_HOME
+    elements: '{{tomcat_root}}\{{tomcat_home}}'
+    scope: user
 
-  # Set environment variables required to install Tomcat as a service
-  - name: Set CATALINA Variable
-    ansible.windows.win_path:
-      state: present
-      name: CATALINA_HOME
-      elements: '{{tomcat_root}}\{{tomcat_home}}'
-      scope: user
+- name: Set JAVA Runtime Environment Variable
+  ansible.windows.win_path:
+    state: present
+    name: JRE_HOME
+    elements: '{{tomcat_root}}\{{java_home}}\{{java_source}}\jre'
+    scope: user
 
-  - name: Set JAVA Runtime Environment Variable
-    ansible.windows.win_path:
-      state: present
-      name: JRE_HOME
-      elements: '{{tomcat_root}}\{{java_home}}\{{java_source}}\jre'
-      scope: user
+- name: Set Tomcat Service Name Variable
+  ansible.windows.win_path:
+    state: present
+    name: SERVICE_NAME
+    elements: '{{service_name}}'
+    scope: user
 
-  - name: Set Tomcat Service Name Variable
-    ansible.windows.win_path:
-      state: present
-      name: SERVICE_NAME
-      elements: '{{service_name}}'
-      scope: user
+- name: Set Tomcat Service PR Display Name Variable
+  ansible.windows.win_path:
+    state: present
+    name: PR_DISPLAYNAME
+    elements: '{{service_display_name}}'
+    scope: user
 
-  - name: Set Tomcat Service PR Display Name Variable
-    ansible.windows.win_path:
-      state: present
-      name: PR_DISPLAYNAME
-      elements: '{{service_display_name}}'
-      scope: user
+- name: Set Tomcat Service PR Description Name Variable
+  ansible.windows.win_path:
+    state: present
+    name: PR_DESCRIPTION
+    elements: '{{service_description}}'
+    scope: user
 
-  - name: Set Tomcat Service PR Description Name Variable
-    ansible.windows.win_path:
-      state: present
-      name: PR_DESCRIPTION
-      elements: '{{service_description}}'
-      scope: user
+# Create the directory structure
+# Create root directory
+- name: Create root directory
+  ansible.windows.win_file:
+    path: '{{tomcat_root}}'
+    state: directory
 
-  # Create the directory structure
-  # Create root directory
-  - name: Create root directory
-    ansible.windows.win_file:
-      path: '{{tomcat_root}}'
-      state: directory
+- name: Create Java home subdirectory
+  ansible.windows.win_file:
+    path: '{{tomcat_root}}\{{java_home}}'
+    state: directory
 
-  - name: Create Java home subdirectory
-    ansible.windows.win_file:
-      path: '{{tomcat_root}}\{{java_home}}'
-      state: directory
+- name: Create Tomcat home subdirectory
+  ansible.windows.win_file:
+    path: '{{tomcat_root}}\{{tomcat_home}}'
+    state: directory
 
-  - name: Create Tomcat home subdirectory
-    ansible.windows.win_file:
-      path: '{{tomcat_root}}\{{tomcat_home}}'
-      state: directory
+- name: Create Tomcat backup subdirectory
+  ansible.windows.win_file:
+    path: '{{tomcat_root}}\{{tomcat_backup}}'
+    state: directory
 
-  - name: Create Tomcat backup subdirectory
-    ansible.windows.win_file:
-      path: '{{tomcat_root}}\{{tomcat_backup}}'
-      state: directory
+- name: Create Java source directory based on version
+  ansible.windows.win_file:
+    path: '{{tomcat_root}}\{{java_home}}\{{java_source}}'
+    state: directory
 
-  - name: Create Java source directory based on version
-    ansible.windows.win_file:
-      path: '{{tomcat_root}}\{{java_home}}\{{java_source}}'
-      state: directory
+# Preparing the Software
+# Copy Tomcat files from temporary location
+- name: Copy Tomcat files
+  ansible.builtin.copy:
+    src: '{{tomcat_staging_app}}/{{tomcat_source_compress}}'
+    dest: '{{tomcat_root}}\{{tomcat_backup}}'
 
-  # Preparing the Software
-  # Copy Tomcat files from temporary location
-  - name: Copy Tomcat files
-    ansible.builtin.copy:
-      src: '{{tomcat_staging_app}}/{{tomcat_source_compress}}'
-      dest: '{{tomcat_root}}\{{tomcat_backup}}'
+# Copy JAVA files from temporary location
+- name: Copy JAVA files
+  ansible.builtin.copy:
+    src: '{{tomcat_staging_app}}/{{java_source_compress}}'
+    dest: '{{tomcat_root}}\{{tomcat_backup}}'
 
-  # Copy JAVA files from temporary location
-  - name: Copy JAVA files
-    ansible.builtin.copy:
-      src: '{{tomcat_staging_app}}/{{java_source_compress}}'
-      dest: '{{tomcat_root}}\{{tomcat_backup}}'
+# Unzip Tomcat file
+- name: Unzip Tomcat file
+  win_unzip:
+    src: '{{tomcat_root}}\{{tomcat_backup}}\{{tomcat_source_compress}}'
+    dest: '{{tomcat_root}}\{{tomcat_home}}'
+    delete_archive: yes
 
-  # Unzip Tomcat file
-  - name: Unzip Tomcat file
-    win_unzip:
-      src: '{{tomcat_root}}\{{tomcat_backup}}\{{tomcat_source_compress}}'
-      dest: '{{tomcat_root}}\{{tomcat_home}}'
-      delete_archive: yes
+# Unzip Java file
+- name: Unzip Java file
+  win_unzip:
+    src: '{{tomcat_root}}\{{tomcat_backup}}\{{java_source_compress}}'
+    dest: '{{tomcat_root}}\{{java_home}}\{{java_source}}'
+    delete_archive: yes
 
-  # Unzip Java file
-  - name: Unzip Java file
-    win_unzip:
-      src: '{{tomcat_root}}\{{tomcat_backup}}\{{java_source_compress}}'
-      dest: '{{tomcat_root}}\{{java_home}}\{{java_source}}'
-      delete_archive: yes
+# Launch the Tomcat Installer
+- name: Launch the Tomcat Installer
+  ansible.windows.win_command:
+    argv:
+    - '{{tomcat_root}}\{{tomcat_home}}\bin\{{service_install_script}}'
+    - install
 
-  # Launch the Tomcat Installer
-  - name: Launch the Tomcat Installer
-    ansible.windows.win_command:
-      argv:
-      - '{{tomcat_root}}\{{tomcat_home}}\bin\{{service_install_script}}'
-      - install
-
-  - name: Set Tomcat service startup mode to manual and ensure it is started
-    ansible.windows.win_service:
-      name: '{{service_name}}'
-      start_mode: manual
-      state: started
+- name: Set Tomcat service startup mode to manual and ensure it is started
+  ansible.windows.win_service:
+    name: '{{service_name}}'
+    start_mode: manual
+    state: started
