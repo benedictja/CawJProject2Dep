@@ -1,6 +1,6 @@
 ---
 # ----------------------------------------------------------------------------------------------
-# Script Name: install-tomcat.yml
+# Script Name: tomcat-setup-Windows.yml
 # Version: 1.0
 # Author: Eric Lacroix
 # Date: 17/08/2023
