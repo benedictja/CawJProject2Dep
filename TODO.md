@@ -1,2 +1,3 @@
-- create linux deploy war file - DONE
-- merge back into main project, so eric can integrate
+- figure how to create a password vault
+- figure out how to use it
+- merge back into main
