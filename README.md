@@ -330,3 +330,21 @@ git checkout RELEASE_10
 git checkout -b PATCH_10_1
 
 
+As such, I want to review my PoC for a few things:
+1) Add IaC for Load Balancers
+   - existing LB code wasn't ported to new project - DONE
+   - need operational scripting     - ??
+   - port KP's maintenance page?    - TODO
+   - break LB into VIP/PAZ and APPS - DONE
+2) Create hooks for Eric's project
+   - windows tomcat server
+   - IIS static content
+   - eventual container support
+3) Security and SecOps
+   this work will tie in to a project that DrewW will be working on
+   - create and install ssl cert on VIP/PAZ
+   - push password change for aniblead and apache users
+4) PortWASS-like functionality and/or LACMS compliance
+
+Work on #3, try to put passwords in a vault.
+

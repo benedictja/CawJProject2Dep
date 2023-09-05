@@ -1,25 +1,14 @@
 ---
 # file: roles/appservers/deploy-war-helloworld/tasks/main.yml
 #
-# Copies the tomcat war file from {{ staging_directory }} (defined in all.yml) to the appserver's
-# webapps directory
+# Call the appropriate deploy playbook, based on OS family
 #
-- name: stop tomcat
-  ansible.builtin.service:
-    name: tomcat
-    state: stopped
-- name: delete directory
-  ansible.builtin.file:
-    path: /usr/share/tomcat/webapps/helloworld
-    state: absent
-- name: copy and replace war
-  ansible.builtin.copy:
-    src: "{{ staging_directory }}/WAR/helloworld.war"
-    dest: /usr/share/tomcat/webapps/helloworld.war
-    owner: tomcat
-    group: tomcat 
-    mode: u=rwx,g=r,o=r
-- name: start tomcat back up
-  ansible.builtin.service:
-    name: tomcat
-    state: started
+- name: Add the OS specific variables from vars
+  include_vars: "{{ item }}"
+  with_first_found:
+    - rainbowunicorn.yml
+    - "{{ ansible_distribution }}{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_os_family }}.yml"
+   
+
+- include_tasks: "deploy-war-{{ ansible_os_family }}.yml"

@@ -1,0 +1,21 @@
+---
+# file: deploy-war-helloworld.yml
+# 
+# This playbook deploys, configures and updates the app server tier
+#
+
+- name:  Deploy/Update The tomcat war file
+  hosts: appservers 
+  become: yes
+  roles:
+
+    # push any updates to the message of the day
+    # parameters:
+    #   system_manager - contact email listed in the motd
+    #   specifying a parameter here will override anything specified in the defaults
+
+  - role: common/motd 
+    system_manager: james.benedict@ssc-spc.gc.ca
+
+    # call the role to deploy the WAR in tomcat
+  - {role: 'appservers/deploy-war-helloworld', tags: 'deploy-war'}
