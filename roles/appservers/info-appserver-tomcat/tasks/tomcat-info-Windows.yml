@@ -1,0 +1,17 @@
+---
+# ----------------------------------------------------------------------------------------------
+# Script Name: tomcat-info-Windows.yml
+# Version: 1.0
+# Author: Eric Lacroix
+# Date: 05/09/2023
+#
+# Description: Retreive Tomcat service information.
+#
+# ----------------------------------------------------------------------------------------------
+
+- name: Get Tomcat service information
+  ansible.windows.win_service_info:
+    name: '{{service_name}}'
+  register: service_info
+- debug: 
+    msg: "Tomcat service {{service_name}} is {{service_info.services[0].state}}"
