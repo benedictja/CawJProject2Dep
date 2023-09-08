@@ -7,7 +7,7 @@
 ---
 - name:  Deploy/Update Infrastructure (IaC)
   hosts: vip appslb
-  become: yes
+  become: "{{ true if ansible_system == 'Linux' else omit }}"
   roles:
   # push the host maps to the lb
   - role: common/push-host-map

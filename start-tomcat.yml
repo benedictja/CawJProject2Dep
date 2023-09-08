@@ -6,7 +6,7 @@
 
 - name: start tomcat
   hosts: appservers 
-  become: yes
+  #become: yes
   roles:
 
     # Call the role to stop tomcat
