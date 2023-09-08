@@ -1,0 +1,9 @@
+---
+# file: operations/stop-tomcat/tasks/main.yml
+#
+# This will stop a tomcat server
+#
+- name: stop tomcat server
+  ansible.builtin.service:
+    name: tomcat
+    state: stopped
