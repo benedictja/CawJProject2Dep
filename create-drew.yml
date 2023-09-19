@@ -8,3 +8,13 @@
     - name:  debug message
       ansible.builtin.debug:
         msg: this is Drews test
+
+      
+    - name: Add the user 'dwallace' with a bash shell, appending the group wheel to the user's groups
+      ansible.builtin.user:
+        name: dwallace
+        shell: /bin/bash
+        group: wheel
+        append: yes
+        comment: Drew Wallace
+        uid: 1004
