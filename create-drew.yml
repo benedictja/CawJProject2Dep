@@ -1,0 +1,10 @@
+---
+#initial file create
+- name: create dwallace
+  hosts: webservers
+  become: yes
+
+  tasks:
+    - name:  debug message
+      ansible.builtin.debug:
+        msg: this is Drews test
