@@ -1,0 +1,5 @@
+---
+
+- name: Let us know we're in windows
+  ansible.builtin.debug:
+    msg: "Using Windows os family for {{ partner }} partner"

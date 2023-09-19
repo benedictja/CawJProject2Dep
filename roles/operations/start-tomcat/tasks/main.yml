@@ -1,9 +1,12 @@
 ---
-# file: operations/start-tomcat/tasks/main.yml
+# file:
 #
-# This will satrt a tomcat server
+# Call the appropriate deploy playbook, based on OS family
 #
-- name: start tomcat server
-  ansible.builtin.service:
-    name: tomcat
-    state: started
+   
+- include_tasks: "{{ item }}"
+  with_first_found:
+    - files:
+        - "start-tomcat-{{ ansible_os_family }}-{{ partner }}.yml"
+        - "start-tomcat-{{ ansible_os_family }}.yml"
+      
