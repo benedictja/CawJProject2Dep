@@ -1,0 +1,12 @@
+---
+# file: info-appservers.yml
+# 
+# This playbook start the app server tier
+#
+- name:  Get Application Tier Service Information
+  hosts: appservers 
+  #become: yes
+  roles:
+
+  # call the role to stop appserver tomcat service
+  - role: appservers/info-appserver-tomcat
