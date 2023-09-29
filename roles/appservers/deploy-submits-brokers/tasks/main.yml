@@ -1,0 +1,100 @@
+---
+# Created by: Micael Gallant
+# Created on: 2023-09-12
+# Last updated by: Micael Gallant
+# Last updated: 2023-09-12
+#
+# This will install/update GCMS Submit and Broker services
+#
+- name: install/update submits and/or broker services
+  hosts: brokerappserver
+  vars_prompt:
+ # - name: build_folder_name
+ #   prompt: Please Enter path after \GCMS_Repository\Release_Content\
+ #   private: false
+
+ # - name: active_env
+ #   prompt: Are you deploying to the ACTIVE environment (true/false)?
+
+  vars:
+    active_env: false  # change this to a bool variable
+    backup_dir: d:\GCMS_Backups\GCMS_{{ansible_date_time.iso8601_basic_short}}
+#    submits_packages_path: \\dc04qvn0905.apps.ci.gc.ca\GCMS_Repository\Release_Content\{{build_folder_name}}\Interfaces\SubmitService\
+#    brokers_packages_path: \\dc04qvn0905.apps.ci.gc.ca\GCMS_Repository\Release_Content\{{build_folder_name}}\Interfaces\Message_Brokers_SubmitServices\
+#    listofservices_tobeinstalled:
+
+  tasks:
+#  - name: build list of services to be deployed in ongoing migration
+
+
+
+  - name: get all submits and brokers services status
+    ansible.windows.win_service_info:
+      #name: eDocs.Cic.MessageBroker.Service
+      name: '{{ item }}'
+    register: service_info
+    loop: "{{ listofservices }}" 
+
+  - debug:
+      #var: service_info
+      msg: Service {{service_info.services[0].name}} is {{service_info.services[0].state}}  
+
+#  - name: display all submits and brokers services status
+#    ansible.builtin.debug:
+#      msg: Service {{service_info.services[0].name}} is {{service_info.services[0].state}}  
+#    loop: "{{ listofservices }}"
+
+
+
+#  - name: check if environment is active (true if any single service is still running)
+#    ansible.windows. .....
+#      active_env: true 
+#      when: service_info[0].services.state == started 
+#    loop: "{{ listofservices }}"
+
+
+
+#  - name: stop all services
+#    ansible.builtin.include_role:
+#      name: /home/GallantM/middletier/CawJProject2Dep/roles/operations/stop-submit-brokers
+
+  - name: Create backup folder
+    ansible.windows.win_file:
+      path: "{{backup_dir}}"
+      state: directory
+
+  - name: take backup of existing files
+    ansible.windows.win_copy:
+      src: d:\GCMS
+      dest: "{{backup_dir}}"
+      remote_src: true
+
+ # - name: uninstall services to be updated
+
+
+
+
+#  - name: delete D:\GCMS\ content
+#    # This step below deletes the actual "GCMS" folder - will need to work on deleting only services being updated in current build
+#    ansible.windows.win_file:
+#      path: D:\GCMS\
+#      state: absent
+
+#  - name: copy new build content from SiteContent to server
+#    # Content of new build (.xml's and .config's) need to be "verified" and "staged" (if applicable), ahead of running the playbook, to have the proper environmental values. 
+#    ansible.windows.win_copy:
+#      src: "{{ brokers_config_directory }}"
+#      dest: D:\GCMS\
+      
+
+
+#  - name: configure environement variables automatically (if ever possible)
+
+
+
+#  - name: install updated services
+
+
+
+
+#  - name: ensure services are stopped or started (inactive/active) and set startup type accordingly
