@@ -21,6 +21,8 @@
     backup_dir: d:\GCMS_Backups\GCMS_{{ansible_date_time.iso8601_basic_short}}
 #    submits_packages_path: \\dc04qvn0905.apps.ci.gc.ca\GCMS_Repository\Release_Content\{{build_folder_name}}\Interfaces\SubmitService\
 #    brokers_packages_path: \\dc04qvn0905.apps.ci.gc.ca\GCMS_Repository\Release_Content\{{build_folder_name}}\Interfaces\Message_Brokers_SubmitServices\
+#    submits_source_path: 
+#    brokers_source_path: 
 #    listofservices_tobeinstalled:
 
   tasks:

@@ -1,0 +1,15 @@
+---
+# file: stop-appservers.yml
+# 
+# This playbook stop the app server tier
+#
+- name:  Deploy/Update Application Tier
+  hosts: appservers 
+  #become: yes
+  roles:
+
+  # call the role to stop appserver tomcat service
+  - role: appservers/stop-appserver-tomcat
+
+  # call the role to stop appserver tomcat service
+  - role: appservers/info-appserver-tomcat

@@ -6,8 +6,10 @@
 #       
 # can be installed with $ ansible-galaxy collection install ansible.windows
 #
-ansible_user: ansiblead
-ansible_password: Ans1bl3!
+#ansible_user: "{{ ansible_user}}"
+#ansible_password: "{{ ansible_password }}"
+ansible_user: ansiblead  
+ansible_password: Ans1bl3! 
 ansible_port: 5986
 ansible_connection: winrm
 ansible_winrm_transport: basic

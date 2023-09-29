@@ -1,0 +1,25 @@
+---
+# file: roles/appservers/deploy-war-helloworld/tasks/main.yml
+#
+# Copies the tomcat war file from {{ staging_directory }} (defined in all.yml) to the appserver's
+# webapps directory
+#
+- name: stop tomcat 
+  ansible.builtin.service:
+    name: tomcat
+    state: stopped
+- name: delete directory {{war_name}}
+  ansible.builtin.file:
+    path: "/usr/share/tomcat/webapps/{{war_name}}"
+    state: absent
+- name: copy and replace war
+  ansible.builtin.copy:
+    src: "{{ staging_directory }}/WAR/{{war_name}}.war"
+    dest: "/usr/share/tomcat/webapps/{{war_name}}.war"
+    owner: tomcat
+    group: tomcat 
+    mode: u=rwx,g=r,o=r
+- name: start tomcat back up
+  ansible.builtin.service:
+    name: tomcat
+    state: started

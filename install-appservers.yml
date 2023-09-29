@@ -1,10 +1,10 @@
 ---
-# file: appservers.yml
+# file: install-appservers.yml
 # 
-# This playbook deploys, configures and updates the app server tier
+# This playbook install, configures and deploy the app server tier
 #
 
-- name:  Deploy/Update Application Tier
+- name:  Install/Deploy Application Tier
   hosts: appservers 
   #become: yes
   roles:

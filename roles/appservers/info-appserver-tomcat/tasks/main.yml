@@ -1,0 +1,19 @@
+---
+# ----------------------------------------------------------------------------------------------
+# File: roles/appservers/info-appserver-tomcat/tasks/main.yml
+# Version: 1.0
+# Author: Eric Lacroix
+# Date: 05/09/2023
+#
+# Description: Call the appropriate info playbook, based on OS family.
+#
+# ----------------------------------------------------------------------------------------------
+
+- name: Add the OS specific variables from vars
+  include_vars: "{{ item }}"
+  with_first_found:
+    - rainbowunicorn.yml
+    - "{{ ansible_distribution }}{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_os_family }}.yml"
+
+- include_tasks: "tomcat-info-{{ ansible_os_family }}.yml"
