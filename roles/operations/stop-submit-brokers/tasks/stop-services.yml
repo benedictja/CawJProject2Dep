@@ -1,0 +1,14 @@
+---
+# Created by: Micael Gallant
+# Created on: 2023-09-11
+# Last updated by: Micael Gallant
+# Last updated: 2023-09-12
+#
+# This will STOP GCMS Submit and Broker services
+#
+- name: stop submit and broker services
+  hosts: brokerappserver
+  tasks:
+  - name: stop services
+    ansible.builtin.include_role:
+      name: /home/GallantM/middletier/CawJProject2Dep/roles/operations/stop-submit-brokers

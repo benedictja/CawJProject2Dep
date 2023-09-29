@@ -1,0 +1,14 @@
+---
+# Created by: Micael Gallant
+# Created on: 2023-09-11
+# Last updated by: Micael Gallant
+# Last updated: 2023-09-12
+#
+# This will STOP GCMS Submit and Broker services
+#
+- name: stop submit and broker services (main)
+  ansible.windows.win_service:
+    name: '{{ item }}'
+    start_mode: manual
+    state: stopped
+  loop: "{{ listofservices }}"

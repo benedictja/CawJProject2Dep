@@ -1,0 +1,11 @@
+---
+- name: "Telnet to Windows on 5986"
+  hosts: localhost
+  tasks: 
+    - raw: "timeout --signal=9 1 telnet {{ item }} 5986"
+      ignore_errors: yes
+      register: telnetout
+      loop:
+        - 192.168.2.178
+    - debug:
+        msg: "HERE: {{ telnetout }}"

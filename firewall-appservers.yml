@@ -1,0 +1,12 @@
+---
+# file: firewall-appservers.yml
+# 
+# This playbook start the app server tier
+#
+- name:  Set Firewall Rules to Windows Appservers
+  hosts: appservers 
+  #become: yes
+  roles:
+
+  # call the role to set firewall rules to appserver
+  - role: appservers/firewall-appserver-tomcat

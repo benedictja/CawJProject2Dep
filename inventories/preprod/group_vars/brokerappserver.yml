@@ -1,0 +1,49 @@
+# file: inventories/preprod/group_vars/windowsservers.yml
+#
+# TODO: embed password in keystore
+#
+# NOTE: windows requires the ansible.windows collection
+#       
+# can be installed with $ ansible-galaxy collection install ansible.windows
+#
+ansible_user: ansiblead
+ansible_password: Ans1bl3!
+ansible_port: 5986
+ansible_connection: winrm
+ansible_winrm_transport: basic
+ansible_winrm_server_cert_validation: ignore
+#brokers_config_directory: \\GCMS-EDC-Utility.apps.ci.gc.ca\STGB_Config$\STGB_MELSiteDeployment\SitePackages\MessageBrokers_SubmitServices\
+#submits_config_directory: \\GCMS-EDC-Utility.apps.ci.gc.ca\STGB_Config$\STGB_MELSiteDeployment\SitePackages\SubmitService\
+btb_svc_acc: to be configured in safer location
+btb_svc_pwd: to be configured in safer location
+eapp_svc_acc: to be configured in safer location
+eapp_svc_pwd: to be configured in safer location
+edoc_svc_acc: to be configured in safer location
+edoc_svc_pwd: to be configured in safer location
+emed_svc_acc: to be configured in safer location
+emed_svc_pwd: to be configured in safer location
+ee_svc_acc: to be configured in safer location
+ee_Svc_pwd: to be configured in safer location
+#listofservices_tobeinstalled:
+listofservices:
+  - Biometric.Cic.BCSFPS.MessageBroker.Service
+  - Biometric.Cic.CBSA.MessageBroker.Service
+  - Biometric.Cic.FCCQ1.MessageBroker.Service
+  - Biometric.Cic.MessageBroker.Service
+  - CIC.MessageBroker.Service.Biometric.Infosharing.AUS.TO.CAN
+  - CIC.MessageBroker.Service.Biometric.Infosharing.CAN.TO.AUS
+  - CIC.MessageBroker.Service.Biometric.Infosharing.CAN.TO.NZL
+  - CIC.MessageBroker.Service.Biometric.Infosharing.CAN.TO.USA
+  - CIC.MessageBroker.Service.Biometric.Infosharing.NZL.TO.CAN
+  - CIC.MessageBroker.Service.Biometric.Infosharing.USA.TO.CAN
+  - CIC.MessageBroker.Service.BTB.Biographic
+  - eDocs.Cic.MessageBroker.Service
+  - Cic.eMedical.MessageBroker.Service
+  - "Cic.Gcms.Submit.Service : eApps"
+  - "Cic.Gcms.Submit.Service : IFHP"
+  - "Cic.Gcms.Submit.Service : RequestDocument"
+  - "Cic.Gcms.Submit.Service : EE"
+  - "Cic.Gcms.Submit.Service : EE_PrUpdated"
+  - "Cic.Gcms.Submit.Service : EE_Updated"
+  - "Cic.Gcms.Submit.Service : IEC"
+  - "Cic.Gcms.Submit.Service : IEC_Wp"
