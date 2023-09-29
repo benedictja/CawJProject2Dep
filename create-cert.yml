@@ -1,0 +1,22 @@
+---
+#initial create cert
+- name: create certificate
+  hosts: ansible-control
+  become: yes
+
+  tasks:
+    - name:  debug message
+      ansible.builtin.debug:
+        msg: this is Drews test
+    
+    - name: Create private key (RSA) with password protection
+      community.crypto.openssl_privatekey:
+        path: /tmp/jbtest.key
+        type: RSA
+        
+
+    - name: Create simple self-signed certificate
+      community.crypto.x509_certificate:
+        path: /tmp/jbtest.pem
+        privatekey_path: /tmp/jbtest.key
+        provider: selfsigned

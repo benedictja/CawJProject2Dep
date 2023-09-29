@@ -1,0 +1,24 @@
+---
+#initial create csr
+- name: create csr
+  hosts: ansible-control
+  become: yes
+
+  tasks:
+    - name:  debug message
+      ansible.builtin.debug:
+        msg: this is Drews test
+    
+    - name: Create certificate signing request (CSR) for self-signed certificate again
+      community.crypto.openssl_csr_pipe:
+        privatekey_path: /tmp/jbtest.key
+        common_name: drew2.com
+        organization_name: Drew Corp
+        subject_alt_name:
+          - "DNS:drew2.com"
+          - "DNS:www.drew2.com"
+      register: csr
+
+    - name: print csr  
+      ansible.builtin.debug:
+        msg: csr

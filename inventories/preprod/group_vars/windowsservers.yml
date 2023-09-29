@@ -9,8 +9,16 @@
 #ansible_user: "{{ ansible_user}}"
 #ansible_password: "{{ ansible_password }}"
 ansible_user: ansiblead  
-ansible_password: Ans1bl3! 
+#ansible_password: Ans1bl3! 
+ansible_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          33613365353831613835326432303432376430313834633963303264643530643531363839613035
+          3632326535393938323361363633333632376364373037610a646331353935393732346662303436
+          39393566346162376638343831363139396434316263363835313264616430323935386165396464
+          6536393332316534390a656263366535383965643732643136626339316366396165336134653632
+          3065
 ansible_port: 5986
 ansible_connection: winrm
 ansible_winrm_transport: basic
 ansible_winrm_server_cert_validation: ignore
+random_var: not encrypted

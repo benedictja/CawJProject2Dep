@@ -1,0 +1,14 @@
+---
+# Test connectivity to a windows host
+# ansible winserver -m ansible.windows.win_ping
+- name: start tomcat
+  hosts: windowsservers 
+  vars:
+    random_var2: rand2
+  
+  tasks:
+  - name: Example from an Ansible Playbook
+    ansible.windows.win_ping:
+    register: ping_info
+  - debug: 
+      msg: "{{ping_info}} {{ansible_os_family}} 1={{ random_var }} 2={{ random_var2 }}"
