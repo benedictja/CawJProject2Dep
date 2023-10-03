@@ -74,3 +74,4 @@ env_specific: "{{ staging_directory }}/Inventories/{{env_name}}"
 # OCP
 #
 env_type: "LegNoDNS"
+partner: DoSW

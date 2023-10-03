@@ -5,12 +5,13 @@
 #
 
 - name:  Stop tomcat
-  hosts: appservers 
-  become: yes
+  hosts: appservers windowsservers
+  #become: yes
   roles:
 
     # Call the role to stop tomcat
     # no parameters
     
   - role: operations/stop-tomcat 
+    become: "{{ true if ansible_system == 'Linux' else omit }}"
    

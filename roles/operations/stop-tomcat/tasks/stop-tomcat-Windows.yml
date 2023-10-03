@@ -1,0 +1,7 @@
+---
+# this is a stub for stopping tomcat on windows
+
+- name: Stop tomcat message
+  ansible.builtin.debug:
+    msg:
+    - "If I was implemented, tomcat would be stopping on windows now"

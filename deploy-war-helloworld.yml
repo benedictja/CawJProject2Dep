@@ -5,17 +5,22 @@
 #
 
 - name:  Deploy/Update The tomcat war file
-  hosts: appservers 
-  become: yes
-  roles:
-
+  hosts: appservers windowsservers
+  tasks:
     # push any updates to the message of the day
     # parameters:
     #   system_manager - contact email listed in the motd
     #   specifying a parameter here will override anything specified in the defaults
+  - name: include common/motd
+    include_role:
+      name: common/motd
+    vars: 
+      system_manager: james.benedict@ssc-spc.gc.ca
+    when: "ansible_facts['os_family'] == 'RedHat'"
+   
 
-  - role: common/motd 
-    system_manager: james.benedict@ssc-spc.gc.ca
-
+  roles:
     # call the role to deploy the WAR in tomcat
-  - {role: 'appservers/deploy-war-helloworld', tags: 'deploy-war'}
+  - role: appservers/deploy-war-helloworld
+    become: "{{ true if ansible_system == 'Linux' else omit }}"
+    

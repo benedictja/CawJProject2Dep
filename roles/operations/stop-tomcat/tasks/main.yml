@@ -1,9 +1,10 @@
 ---
-# file: operations/stop-tomcat/tasks/main.yml
 #
-# This will stop a tomcat server
+# Call the appropriate deploy playbook, based on OS family
 #
-- name: stop tomcat server
-  ansible.builtin.service:
-    name: tomcat
-    state: stopped
+
+- include_tasks: "{{ item }}"
+  with_first_found:
+    - files:
+        - "stop-tomcat-{{ ansible_os_family }}.yml"
+      skip: true

@@ -1,0 +1,14 @@
+---
+# file: operations/start-tomcat/tasks/main.yml
+#
+# This will start a tomcat server
+#
+- name: start tomcat server
+  become: true
+  ansible.builtin.service:
+    name: tomcat
+    state: started
+
+- name: Let us know we're in redhat
+  ansible.builtin.debug:
+    msg: "Using RH os family"
