@@ -22,6 +22,6 @@
         push: true
         tag: web-tomcat-dev
         username: gresident
-        password: "Redhat@1-rule"
+        password: "redhat password"
         push_args:
           dest: quay.io/gresident
